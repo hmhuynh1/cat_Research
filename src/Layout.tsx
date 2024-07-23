@@ -45,7 +45,7 @@ export default function Layout() {
 
 
                    
-                    <Button {...buttonStyle} onClick={() => {
+                    <Button className="glow" onClick={() => {
                         //localStorage.setItem("user", JSON.stringify("{}"));
 
                         localStorage.removeItem("user");

@@ -63,9 +63,9 @@ export default function SignUp(){
                         <Input name="password" type='password' />
                     </FormControl>
                     <FormControl>
-                        <Input {...buttonStyle} className={"glowHover"} type="submit" value="login"/>
+                        <Input className="glow" type="submit" value="login"/>
                     </FormControl>
-                    <Button  {...buttonStyle}  className={"glowHover"} mt={"10px"} onClick={()=>navigate('/signup')}>Sign Up</Button>
+                    <Button className="glow" onClick={()=>navigate('/signup')}>Sign Up</Button>
                 </form>
             </Box>
         </Box>

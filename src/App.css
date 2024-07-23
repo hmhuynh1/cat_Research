@@ -149,25 +149,26 @@ h3 {
     width: 100%;
 }
 
-button, input[type=submit], .glow {
+:is(input, button).glow {
     width: 300px;
     margin: 15px;
     font-size: 16px;
-    background: rgb(141, 222, 97);
+    background: white;
     color: black;
     border-radius: 18px;
-    border: 3px solid #f0ebeb !important;
-    padding: "10px";
+    border: 3px solid #f0ebeb;
 }
 /*.glowHover{
     background: white;
     color: black;
 }*/
-button:hover, input[type=submit]:hover, .glow:hover {
-    background: rgb(166, 31, 31);
+:is(input, button).glow:hover {
+    background: white;
     color: black;
+    border: 3px solid #f0ebeb;
     box-shadow: 0 0 10px rgb(236, 240, 242), 0 0 20px rgb(232, 238, 241), 0 0 20px rgb(226, 233, 238), 0 0 30px rgb(221, 230, 235);
 }
+
 
 
 

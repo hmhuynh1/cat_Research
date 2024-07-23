@@ -64,7 +64,7 @@ export default function SignUp(){
                                 <Input className={"glow"} type="submit" value="signup"/>
                             </FormControl>
                             <FormControl style={{textAlign: "center"}}>
-                                <Button className={"glow"} mt={"10px"} onClick={()=>navigate('/login')}>Login</Button>
+                                <Button className={"glow"} onClick={()=>navigate('/login')}>Login</Button>
                             </FormControl>
                         </form>
                 </Box>
