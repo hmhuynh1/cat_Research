@@ -7,7 +7,7 @@
 
 .cat-item {
     border: 1px solid #ddd;
-    border-radius: 4px;
+    /*border-radius: 4px;*/
     overflow: hidden;
     width: 220px;
     text-align: center;
@@ -17,7 +17,7 @@
 .cat-item img {
     width: 100%;
     height: auto;
-    border-bottom: 1px solid #ddd;
+     /*border-bottom: 1px solid #ddd;*/
     margin-bottom: 5px;
 }
 
@@ -30,7 +30,7 @@ main {
 
 
 
-#Add-book-form-section {
+#advice-form {
     display: flex;
     flex-direction: column;
     --bg: rgb(38, 35, 35);
@@ -38,7 +38,7 @@ main {
     border: 2px solid rgb(17, 16, 16);
     color: rgb(240, 247, 248);
     opacity: 0.8;
-    border-radius: 20px;
+    border-radius: 2px;
     margin-right: 0px;
     justify-content: center;
     padding: 3 10px;
@@ -169,6 +169,23 @@ h3 {
     box-shadow: 0 0 10px rgb(236, 240, 242), 0 0 20px rgb(232, 238, 241), 0 0 20px rgb(226, 233, 238), 0 0 30px rgb(221, 230, 235);
 }
 
+
+:is(input, button).g-button {
+    /*width: 300px;*/
+    margin: 15px;
+    font-size: 16px;
+    background: white;
+    color: black;
+    border-radius: 18px;
+    border: 3px solid #f0ebeb;
+}
+
+:is(input, button).g-button:hover {
+    background: white;
+    color: black;
+    border: 3px solid #f0ebeb;
+    box-shadow: 0 0 10px rgb(236, 240, 242), 0 0 20px rgb(232, 238, 241), 0 0 20px rgb(226, 233, 238), 0 0 30px rgb(221, 230, 235);
+}
 
 
 

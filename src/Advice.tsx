@@ -62,7 +62,7 @@ export default function Advice(){
                 <Box as={"section"}
                      fontWeight={500}
                      padding={"20px"}
-                     id="Add-book-form-section" className="p-3">
+                     id="advice-form" className="p-3">
                     <Heading textAlign={"center"}
                     fontSize={"30px"}>Cat Advice Submits</Heading>
                     <form method="post"

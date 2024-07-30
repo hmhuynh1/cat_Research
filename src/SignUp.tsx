@@ -12,6 +12,11 @@ export default function SignUp(){
         e.preventDefault();
 
         console.log( e.target.email.value, e.target.password.value)
+        if (e.target.email.value === ""|| e.target.password.value === "" ){
+            return 
+    
+        }
+
 
         const response = await fetch("http://localhost:3001/signup", {
             method: "POST",
@@ -61,7 +66,7 @@ export default function SignUp(){
 
 
                             <FormControl style={{textAlign: "center"}}>
-                                <Input className={"glow"} type="submit" value="signup"/>
+                                <Input className={"glow"} type="submit" value="Sign Up"/>
                             </FormControl>
                             <FormControl style={{textAlign: "center"}}>
                                 <Button className={"glow"} onClick={()=>navigate('/login')}>Login</Button>
