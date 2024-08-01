@@ -1,5 +1,5 @@
 import {Box, Heading, Img, Text} from "@chakra-ui/react";
-import homeCat from "./assets/g1.jpg"
+import homeCat from "./assets/catParty.jpg"
 import { useNavigate } from 'react-router-dom';
 import  { useEffect } from 'react';
 function App() {
@@ -14,22 +14,32 @@ function App() {
 
   return (
       <>
-          
-            <Box as={"main"} padding={"20px"} className="content-wrapper text-and-image">
-                <Heading color={"white"}>
-                    Welcome to About Cats
-                </Heading>
-                <Img src={homeCat} maxW={"250px"} borderRadius={"10px"}
-                margin={"10px 0px 10px 0px"}/>
+            
+            <Box as={"main"} padding={"20px"} className="content-wrapper2 text-and-image">
+                
                 <div className="text-content">
+                <Heading color={"white"}>
+                    Welcome to Cats research
+                </Heading><br></br>
+
+                
                 <Text color={"white"}>
-                    From ancient Egyptians to today’s cat is always mean something to the cat owner. People have always loved their cats.
-                    In the U.S. alone, cats reign over about 45.3 million households. There are at least 45 domestic breeds, which differ widely in features such as coat color, tail length, hair texture, and temperament, according to the Cat Fancier’s Association.
+                If you are a cat owner or being a cat owner. You will love cat research. 
+                Cat research is the place where you can get all kinds of information about cats. 
+                Like how to adopt a cat. What is the cat breed look like in the cat breeds page, that you will love. 
+                What to be prepared for your new cat. What are the good brands of cat foods, and toys that will work for your cat.
+                And all the fun facts about cats. 
+                In cat research. You also get all the helpful advice that all the other cat owners have experienced with their cat. 
                 </Text>
 
-                    <Text color={"white"} mt={"20px"}>
-                    On ous website you will find out more about cats information and advice for cats foods,cats toys.
-                    </Text>
+                
+                <br></br><br></br><Heading color={" #4ad326 "}>
+                Let the fun begin and never end being a cat lovers!!!
+                </Heading>
+                <br></br><Img src={homeCat} maxW={"900px"} maxH={300} borderRadius={"100px"}
+                margin={"10px 0px 10px 0px"}/>
+
+                
 
             </div>
 

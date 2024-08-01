@@ -64,7 +64,7 @@ export default function Advice(){
                      padding={"20px"}
                      id="advice-form" className="p-3">
                     <Heading textAlign={"center"}
-                    fontSize={"30px"}>Cat Advice Submits</Heading>
+                    fontSize={"30px"} color="#22CE83">Cat Advice Submits</Heading>
                     <form method="post"
                          onSubmit={submitHandler}
                          id="book-submit-form" asp-action="Advice" className="d-flex flex-column gap-2"

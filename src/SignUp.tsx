@@ -51,7 +51,7 @@ export default function SignUp(){
         <Flex justifyContent={"center"} alignItems={"center"} height={"100vh"}>
                 <Box maxW={"900px"} minW={"400px"} padding={"20px"} borderRadius={"20px"} backgroundColor={"#5dbab1"}margin={"auto"}>
                     
-                    <Heading>Sign Up</Heading>
+                    <Heading>Sign Up</Heading><br></br>
                         <form onSubmit={submitHandler} method="POST">
 
                             <FormControl style={{paddingTop: "10px"}}>
@@ -66,7 +66,7 @@ export default function SignUp(){
 
 
                             <FormControl style={{textAlign: "center"}}>
-                                <Input className={"glow"} type="submit" value="Sign Up"/>
+                                <Input className={"glow"} type="submit" value="Join Us"/>
                             </FormControl>
                             <FormControl style={{textAlign: "center"}}>
                                 <Button className={"glow"} onClick={()=>navigate('/login')}>Login</Button>
@@ -76,3 +76,4 @@ export default function SignUp(){
         </Flex>
     </Box>
 }
+

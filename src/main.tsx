@@ -12,7 +12,7 @@ import SignUp from "./SignUp";
 import Login from  "./Login"
 import {ChakraProvider} from "@chakra-ui/react";
 import Gallery from "./Gallery.tsx";
-import About from "./About.tsx";
+import About from "./AboutUs.tsx";
 import Favorites from "./Favorites.tsx";
 import Advice from "./Advice.tsx";
 import Contacts from "./Contacts.tsx";

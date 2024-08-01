@@ -52,7 +52,7 @@ export default function SignUp(){
     >
         <Box  height={"100vh"} padding={"50px"}>
             <Box maxW={"400px"} padding={"20px"} borderRadius={"20px"} backgroundColor={"#5dbab1"}>
-                <Heading>Login</Heading>
+                <Heading>Login</Heading><br></br>
                 <form onSubmit={submitHandler} method="POST">
                     <FormControl>
                         <FormLabel>Email address</FormLabel>
@@ -63,9 +63,9 @@ export default function SignUp(){
                         <Input name="password" type='password' />
                     </FormControl>
                     <FormControl>
-                        <Input className="glow" type="submit" value="login"/>
+                        <Input className="glow" type="submit" value="Login"/>
                     </FormControl>
-                    <Button className="glow" onClick={()=>navigate('/signup')}>Sign Up</Button>
+                    <Button className="glow" onClick={()=>navigate('/signup')}>Join Us</Button>
                 </form>
             </Box>
         </Box>

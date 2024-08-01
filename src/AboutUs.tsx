@@ -16,7 +16,7 @@ function App() {
   return (
       <>
           
-            <Box as={"main"} padding={"20px"} className="content-wrapper text-and-image">
+            <Box as={"main"} padding={"20px"} className="content-wrapper2 text-and-image">
                 <Heading color={"white"}>
                     About Us
                 </Heading>

@@ -37,9 +37,9 @@ export default function Layout() {
 
 
                         <Link {...buttonStyle} href="/">Home</Link>
-                        <Link {...buttonStyle} href="/#/gallery">Gallery</Link>
-                        <Link {...buttonStyle} href="/#/advice">Advice</Link>
-                        <Link {...buttonStyle} href="/#/favorites">Favorites</Link>
+                        <Link {...buttonStyle} href="/#/gallery">Cat Breeds</Link>
+                        <Link {...buttonStyle} href="/#/advice">Submit Advices</Link>
+                        <Link {...buttonStyle} href="/#/favorites">Helpful Advices</Link>
                         <Link {...buttonStyle} href="/#/contacts">Contacts</Link>
                         <Link {...buttonStyle} href="/#/about">AboutUS</Link>
 
