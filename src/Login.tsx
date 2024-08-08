@@ -1,9 +1,11 @@
 import {Box, Button, FormControl, FormLabel, Heading, Input} from "@chakra-ui/react";
 import {useNavigate} from "react-router-dom";
-
 import catBG from "./assets/grassCat.png"
+import { useState } from "react";
 
 export default function SignUp(){
+    const [error, setError] = useState("");
+
     const navigate = useNavigate();
     const submitHandler = async (e: any)=>{
         e.preventDefault();
@@ -26,7 +28,10 @@ export default function SignUp(){
         if(data.message === "login successful"){
             localStorage.setItem("user", JSON.stringify(data.user));
             navigate("/");
+        }else {
+            setError("Invalid email or passward")
         }
+        
         console.log(data)
 
     }
@@ -61,7 +66,8 @@ export default function SignUp(){
                     <FormControl>
                         <FormLabel>Password</FormLabel>
                         <Input name="password" type='password' />
-                    </FormControl>
+                    </FormControl><br></br>
+                    <FormLabel color="Red">{error}</FormLabel>
                     <FormControl>
                         <Input className="glow" type="submit" value="Login"/>
                     </FormControl>

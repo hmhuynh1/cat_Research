@@ -8,6 +8,13 @@ import H5 from "./assets/Bengal.jpg"
 import H6 from "./assets/BritishShorthair.jpg" 
 import H7 from "./assets/DevonRex.jpg"
 import H8 from "./assets/ExoticShorthair.jpg"
+import H9 from "./assets/MaineCoon.jpg"
+import H10 from "./assets/Norwegian_forest.jpg"
+import H11 from "./assets/Persian.jpg"
+import H12 from "./assets/Siamese.jpg"
+import H13 from "./assets/Siberian.jpg"
+
+
 import { useNavigate } from 'react-router-dom';
 import  { useEffect } from 'react';
 function App() {
@@ -27,7 +34,7 @@ function App() {
       <Box className="breed-container">
         <Box className="breed-info">
         <br></br><Text color="#22CE83">Mackerel Tabby</Text>
-          <Img src={H1} maxW="220px" borderRadius="20px" margin="10px 0" />
+          <Img src={H1} maxW="200px" borderRadius="20px" margin="10px 0" />
           <Text color="white">
             They're usually friendly, intelligent,
             affectionate, vocal, active, and quiet.
@@ -111,9 +118,71 @@ function App() {
           Exotic Shorthair is a quiet breed, perfect for cat naps on your lap  
           Because of their short hair, you can get away with brushing them about once a week, 
           making them ideal for busy families. flat face and a coat that comes in many different colors.
+
+          </Text>
+        </Box>
+
+        <Box className="breed-info">
+          <Text color="#22CE83">Maine Coon</Text>
+          <Img src={H9} maxW="310px" borderRadius="20px" margin="10px 0" />
+          <Text color="white">
+          Known as gentle giants, the Maine coon cat can weigh up to 20 pounds, making them the largest of pedigreed cats, 
+          Maine coon cats are friendly, great with kids and known for their incredible intelligence. 
+          They often like to play, especially in the water, Their coats only require occasional grooming to keep them silky smooth.
           
           </Text>
         </Box>
+       
+        <Box className="breed-info">
+          <Text color="#22CE83">Norwegian Forest</Text>
+          <Img src={H10} maxW="310px" borderRadius="20px" margin="10px 0" />
+          <Text color="white">
+          The large, semi-long-haired Norwegian forest cat has a waterproof double coat. 
+          Their coats can come in any color but often feature a tabby brown-and-white fur. They have large, 
+          almond-shaped eyes and a triangle-shaped head. This breed is active and requires scratching posts 
+          and toys to keep their attention. They are also adaptable and social when they want to be. 
+          Although they are a gentle, calm breed, they are not considered “lap cats.”
+          </Text>
+        </Box> 
+
+        <Box className="breed-info">
+          <Text color="#22CE83">Persian</Text>
+          <Img src={H11} maxW="310px" borderRadius="20px" margin="10px 0" />
+          <Text color="white">
+          Many people consider Persian cats “the epitome of feline beauty.” 
+          and they are beautiful to behold. Like the exotic shorthair, Persian cats are quiet and charming.
+          These cats have long coats that require daily brushing and occasional baths to prevent mats and tangles. 
+          Persian cats have luxurious coats in white, black, blue, cream, chocolate and red. 
+          Persian cats will also need daily exercise to stay happy and healthy.
+        
+          </Text>
+        </Box>
+
+        <Box className="breed-info">
+          <Text color="#22CE83">Siamese</Text>
+          <Img src={H12} maxW="310px" borderRadius="20px" margin="10px 0" />
+          <Text color="white">
+          The Siamese is one of the most easily recognizable cat breeds known for their light, 
+          silky coats with dark legs, tail, and facial area. They have deep blue, 
+          almond-shaped eyes and prominent ears. The Siamese have intelligent, 
+          curious personalities and are social cats known for talking with a distinct voice. 
+          This is a cat that will enjoy being with you at all times. 
+          </Text>
+        </Box>
+
+        <Box className="breed-info">
+          <Text color="#22CE83">Siberian</Text>
+          <Img src={H13} maxW="310px" borderRadius="20px" margin="10px 0" />
+          <Text color="white">
+          Siberian cats are considered a “national treasure” in Russia, according to the CFA, 
+          and have been in the U.S. since 1990. This cat is strong and alert with a dense triple coat and bushy tail. 
+          Their coats can come in all color and pattern combinations, with only minimal brushing required to keep tangles at bay. 
+          They are an affectionate, playful breed that loves spending time with people.
+          
+          </Text>
+        </Box>
+
+       
 
       </Box>
     </Box><br /><br />

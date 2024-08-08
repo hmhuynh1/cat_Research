@@ -1,10 +1,15 @@
 
 import {Box, Button, Flex, FormControl, FormLabel, Heading, Input} from "@chakra-ui/react";
 import {useNavigate} from "react-router-dom";
-
 import catBG from "./assets/catPattern.png"
 import "./App.css"
+import { useState } from "react";
+
+
+//New CODE *************** on line 62
+
 export default function SignUp(){
+    const [error, setError] = useState("")
     const navigate = useNavigate();
 
 
@@ -13,9 +18,19 @@ export default function SignUp(){
 
         console.log( e.target.email.value, e.target.password.value)
         if (e.target.email.value === ""|| e.target.password.value === "" ){
+            setError("Please enter email and password")
             return 
-    
         }
+
+        if(e.target.email.value.endsWith(".com") || e.target.email.value.endsWith (".edu") || e.target.email.value.endsWith(".org"))  {
+            setError("")
+        }
+        else{
+            setError("Please use: .com, .edu. or .org")
+            return
+        }
+           
+        
 
 
         const response = await fetch("http://localhost:3001/signup", {
@@ -44,7 +59,19 @@ export default function SignUp(){
         mt:"30px"
     }
 
-    
+    //New CODE ***************
+    function emailHandler(e){
+        console.log(e.target.value)/**/
+        console.log("validation")/**/
+        if(e.target.value.endsWith(".com") || e.target.value.endsWith (".edu") || e.target.value.endsWith(".org"))  {
+            setError("")
+        }
+        else{
+            setError("Please use: .com, .edu. or .org")
+            return
+        }
+        
+    }
 
 
     return <Box backgroundImage={catBG} >
@@ -56,7 +83,9 @@ export default function SignUp(){
 
                             <FormControl style={{paddingTop: "10px"}}>
                                 <FormLabel>Email address</FormLabel>
-                                <Input name="email" type='email' />
+                                <Input name="email" type='email' onChange={emailHandler}/>
+
+                    
                             </FormControl>
                             <FormControl style={{paddingBottom: "10px"}}>
                                 <FormLabel>Password</FormLabel>
@@ -64,7 +93,7 @@ export default function SignUp(){
                             </FormControl>
 
 
-
+                            <FormLabel color="Red">{error}</FormLabel>
                             <FormControl style={{textAlign: "center"}}>
                                 <Input className={"glow"} type="submit" value="Join Us"/>
                             </FormControl>

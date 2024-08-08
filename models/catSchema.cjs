@@ -3,7 +3,7 @@ const { Schema, model } = require('mongoose');
 
 const CatSchema = new Schema({
 
-    name: {
+    link: {
         type: String
     },
     breed: {

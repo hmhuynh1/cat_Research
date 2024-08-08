@@ -122,7 +122,7 @@ app.put("/todo/:id", async (req, res) => {
 
 app.post('/cat', async (req, res)=> {
     const result = await Cat.create({
-        name: req.body.name,
+        link: req.body.link,
         breed: req.body.breed,
         food: req.body.food,
         toy: req.body.toy,

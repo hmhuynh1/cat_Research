@@ -1,113 +1,69 @@
-import "./App.css"
-import {Box, Flex, Heading} from "@chakra-ui/react";
+import {Box, Flex, Text, Heading, Link} from "@chakra-ui/react";
+import {useEffect, useState} from "react";
 
-import { useState} from "react";
-export default function Advice(){
+export default function Favorites(){
 
-    const [form, setForm] = useState({
-        first: "",
-        last: "",
-        email: "",
-        comment: ""
-    })
-    const changeHandler = (e: any)=>{
-        setForm({
-            ...form,
-            [e.target.name]: e.target.value
-        })
+    const [data, setData] = useState([])
+    const getCat = async ()=> {
+        const response = await fetch('http://localhost:3001/cat');
+        const d = await response.json();
+        console.log("check",d)
+        setData(d);
+
     }
 
-    const submitHandler = async (e: any)=>{
-        e.preventDefault();
+    useEffect(() => {
+        getCat()
+    }, []);
 
-        const response = await fetch("http://localhost:3001/contacts", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                first: e.target.first.value,
-                last: e.target.last.value,
-                email: e.target.email.value,
-                comment: e.target.comment.value,
+    return <Box padding={"20px"}>
+        <Heading>Helpful Advices</Heading>
+        <section>
 
-            }),
+            <div id="center">
+                <section id="search-form-section d-flex flex-column gap-4">
 
-        });
-        const data = await response.json();
-        console.log(data)
-        setForm({
-            first: "",
-            last: "",
-            email: "",
-            comment: "",
-        })
-    }
+                    <form asp-action="Advice" method="get" className="d-flex flex-column gap-4">
 
-    return <Flex>
+                        <input type="search" className="w-full p-2" name="query"
+                               placeholder="Type cat advice..." id="search-box"/>
 
-        <main className="flex-columnav bg-secondary">
+                        <div className="flex-row justify-content-center">
+                            <button type="submit" id="search-btn">
+                                Search
+                            </button>
+                            <button  id="clear-btn" name="clear">
+                                clear
+                            </button>
 
-
-            <Flex flexDirection={["column", "column", "row"]}
-            gap={"20px"}
-                  padding={"20px"}
-            >
-                <Box as={"section"}
-                     fontWeight={500}
-                     padding={"20px"}
-                     id="advice-form" className="p-3">
-                    <Heading textAlign={"center"}
-                    fontSize={"30px"}>Contact Us</Heading>
-                    <form 
-                         onSubmit={submitHandler}
-                         id="book-submit-form" asp-action="Contacts" className="d-flex flex-column gap-2"
-                         
-                    >
-                    {/* <form id="contactForm" action="mailto:bookswaphsh@gmail.com" 
-                          className="d-flex flex-column gap-2" encType="text/plain"  method="post" > */}
-                        <fieldset>
-                            <label htmlFor="">First Name: </label>
-                            <input
-                                 onChange={changeHandler}
-                                value={form.first}
-                                name="first" type="text" placeholder=""/>
-                        </fieldset>
-
-                        <fieldset>
-                            <label htmlFor=""> Last Name: </label>
-                            <input  name="last" type="text"
-                                onChange={changeHandler}
-                                   value={form.last}
-                                   placeholder=""/>
-                        </fieldset>
-
-                        <fieldset>
-                            <label htmlFor="">Email: </label>
-                            <input name="email" type="text"
-                                onChange={changeHandler}
-                                   value={form.email}
-                                   placeholder=""/>
-                        </fieldset>
-                        <fieldset>
-                            <label htmlFor="">Comment: </label>
-                            <textarea style={{color: "black"}}
-                                    onChange={changeHandler}
-                                   value={form.comment} name="comment"/>
-                        </fieldset>
-                        
-
-                        <fieldset>
-                            <input className="text-light" type="submit" value="SUBMIT"/>
-                        </fieldset>
-
-
+                        </div>
                     </form>
-                </Box>
 
 
-            </Flex>
-        </main>
+                </section>
+            </div>
+            <section  className="mt-4">
+                  <Flex gap={"20px"}>
+                    {
+                        data.map((x:any, i) => {
+                            return <Box key={i} flex={"1 1 32%"} color={"white"} border={"solid 1px white"}
+padding={"20px"}
+                            >
+                                <h4 color={"yellowgreen"}><Link href={x.link}>{x.link}</Link></h4>
+                                <Link href='https://chakra-ui.com' isExternal></Link>
+                                <Text>{x.breed}</Text>
+                                <Text>{x.food}</Text>
+                                <Text>{x.toy}</Text>
+                                <Text>{x.advice}</Text>
+                            </Box>
+                        })
+                    }
 
-    </Flex>
+                  </Flex>
+            </section>
+
+        </section>
+
+
+    </Box>
 }
