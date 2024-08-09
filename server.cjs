@@ -18,7 +18,7 @@ main().catch(err => console.log(err));
 
 
 async function main() {
-    await mongoose.connect('mongodb+srv://honghong:honghong@books-data.xk6gxfq.mongodb.net/?retryWrites=true&w=majority&appName=books-data');
+    await mongoose.connect(process.env.MONGO_URL);
     console.log('start of main')
 }
 

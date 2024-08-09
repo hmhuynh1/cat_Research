@@ -1,7 +1,7 @@
 
 import "./App.css"
 import {Box, Flex, Heading} from "@chakra-ui/react";
-import catB from "./assets/Ragdoll.jpg"; // Ensure this path is correct
+import catB from "./assets/h1.jpg"; // Ensure this path is correct
 
 import { useState} from "react";
 export default function Advice(){
@@ -58,7 +58,7 @@ export default function Advice(){
         
 
         <main className="flex-columnav bg-secondary">
-
+    
 
             <Flex flexDirection={["column", "column", "row"]}
             gap={"20px"}
