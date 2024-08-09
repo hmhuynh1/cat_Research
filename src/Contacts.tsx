@@ -70,11 +70,11 @@ export default function Advice() {
             >
                 <Box
                     as="section"
-                    fontWeight={500}
+                    fontWeight={400}
                     padding="20px"
                     bg="rgba(0, 0, 0, 0.6)" // Slightly darker for better readability
                     borderRadius="md"
-                    maxWidth="600px"
+                    maxWidth="500px"
                     width="100%"
                     marginLeft="0" // Ensure there's no additional left margin
                 >

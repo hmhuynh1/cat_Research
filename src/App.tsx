@@ -37,10 +37,10 @@ function App() {
                         <Heading color="black" mb={4}>
                             Welcome to Cats Research
                         </Heading>
-                        <Text color="white" mb={4}>
+                        <Text color="black" mb={4}>
                             If you are a cat owner or being a cat owner, you will love cat research.<b></b> 
                             Cat research is the place where you can get all kinds of information about cats.<b></b> 
-                            Like how to adopt a cat, what is the cat breed like in the cat breeds page that you will love. 
+                            Like how to adopt a cat, what is the cat breed like in the cat breeds page that you will love. <b></b> 
                             What to be prepared for your new cat, what are the good brands of cat foods and toys that will work for your cat,
                             and all the fun facts about cats. 
                             In cat research, you also get all the helpful advice that all the other cat owners have experienced with their cats.
@@ -48,6 +48,7 @@ function App() {
                        
                     </div>
                 </Box>
+                
 
 
                 <Box as="footer" padding="20px" textAlign="center">
