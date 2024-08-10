@@ -1,7 +1,8 @@
 
 import "./App.css"
 import {Box, Flex, Heading} from "@chakra-ui/react";
-import catB from "./assets/h1.jpg"; // Ensure this path is correct
+// import H2 from "./assets/Ragdoll.jpg"
+
 
 import { useState} from "react";
 export default function Advice(){

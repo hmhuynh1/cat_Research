@@ -1,5 +1,5 @@
 import { Box, Flex, Heading, FormControl, FormLabel, Input, Textarea, Button } from "@chakra-ui/react";
-import { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import catBG from "./assets/catHi.jpg"; // Ensure this path is correct
 
 export default function Advice() {
@@ -11,7 +11,7 @@ export default function Advice() {
     });
 
     // Handler for input changes
-    const changeHandler = (e) => {
+    const changeHandler = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
         setForm({
             ...form,
             [e.target.name]: e.target.value
@@ -19,7 +19,7 @@ export default function Advice() {
     };
 
     // Form submission handler
-    const submitHandler = async (e) => {
+    const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         try {
@@ -81,7 +81,7 @@ export default function Advice() {
                     <Heading textAlign="center" fontSize="30px" color="white" mb={6}>
                         Contact Us
                     </Heading>
-                    <form onSubmit={submitHandler}>
+                    <form onSubmit={e => { submitHandler(e); }}>
                         <FormControl id="first-name" mb={4} isRequired>
                             <FormLabel color="white">First Name</FormLabel>
                             <Input

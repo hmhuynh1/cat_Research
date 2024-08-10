@@ -13,6 +13,8 @@ import H10 from "./assets/Norwegian_forest.jpg"
 import H11 from "./assets/Persian.jpg"
 import H12 from "./assets/Siamese.jpg"
 import H13 from "./assets/Siberian.jpg"
+import H14 from "./assets/Ragdoll.jpg"
+import H15 from "./assets/Abyssinian.jpeg"
 
 
 import { useNavigate } from 'react-router-dom';
@@ -182,7 +184,46 @@ function App() {
           </Text>
         </Box>
 
+        <Box className="breed-info">
+          <Text color="#22CE83">Ragdoll</Text>
+          <Img src={H14} maxW="310px" borderRadius="20px" margin="10px 0" />
+          <Text color="white">
+          The Ragdoll is a blue-eyed, and 1 on CFA’s list of most popular cat breeds for four years in a row.
+          This breed is easily recognized by their fluffy, long-haired coats and mellow disposition. 
+          They’re known to be affectionate, playful, intelligent, intelligence, and friendly 
+          manner—and even get along with other animals and children. Ragdolls don’t shed as much as other cats due to their soft outer hair layer, 
+          but they will still need to be groomed during the change of seasons to keep their coat looking shiny and strong.
+          </Text>
+        </Box>
+
+
+        <Box className="breed-info">
+          <Text color="#22CE83">Abyssinian</Text>
+          <Img src={H15} maxW="310px" borderRadius="20px" margin="10px 0" />
+          <Text color="white">
+          Reminiscent of ancient Egyptian cats, the Abyssinian breed has a long, arched neck, muscular body, 
+          big ears and almond-shaped eyes. Abyssinians are one of the oldest known cat breeds with a unique 
+          ticked coat that appears translucent and can come in many different colors. They are smart, athletic, 
+          companionable.This breed requires only minimal brushing to maintain its pretty coat. 
+          Abyssinians is enjoy being around people and being the center of attention.
+          </Text>
+        </Box>
+
+
+        <Box className="breed-info">
+          <Text color="#22CE83">Abyssinian</Text>
+          <Img src={H15} maxW="310px" borderRadius="20px" margin="10px 0" />
+          <Text color="white">
+          Reminiscent of ancient Egyptian cats, the Abyssinian breed has a long, arched neck, muscular body, 
+          big ears and almond-shaped eyes. Abyssinians are one of the oldest known cat breeds with a unique 
+          ticked coat that appears translucent and can come in many different colors. They are smart, athletic, 
+          companionable.This breed requires only minimal brushing to maintain its pretty coat. 
+          Abyssinians is enjoy being around people and being the center of attention.
+          </Text>
+        </Box>
        
+
+        
 
       </Box>
     </Box><br /><br />
