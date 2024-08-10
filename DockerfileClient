@@ -1,0 +1,14 @@
+From node:20.15-alpine
+
+workdir /app
+
+copy package.* .
+run npm i --force
+
+copy . .
+
+# run npm run build
+
+expose 5173
+
+entrypoint ["sh","-c","npm run dev"]

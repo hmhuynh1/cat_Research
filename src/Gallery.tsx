@@ -222,7 +222,17 @@ function App() {
           </Text>
         </Box>
        
-
+        <Box className="breed-info">
+          <Text color="#22CE83">Abyssinian</Text>
+          <Img src={H15} maxW="310px" borderRadius="20px" margin="10px 0" />
+          <Text color="white">
+          Reminiscent of ancient Egyptian cats, the Abyssinian breed has a long, arched neck, muscular body, 
+          big ears and almond-shaped eyes. Abyssinians are one of the oldest known cat breeds with a unique 
+          ticked coat that appears translucent and can come in many different colors. They are smart, athletic, 
+          companionable.This breed requires only minimal brushing to maintain its pretty coat. 
+          Abyssinians is enjoy being around people and being the center of attention.
+          </Text>
+        </Box>
         
 
       </Box>
