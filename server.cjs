@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const app = express();
-const port = 3001;
+const port = process.env.PORT ?? 3001;
 const mongoose = require("mongoose");
 const User = require("./models/userSchema.cjs")
 const Cat = require("./models/catSchema.cjs")
@@ -11,6 +11,7 @@ const cors = require("cors")
 //middleware
 // parse requests of content-type - application/json
 app.use(cors())
+app.use(express.static('dist'))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -23,7 +24,7 @@ async function main() {
 }
 
 
-app.get('/todo', async (req, res)=> {
+app.get('/todo', async (req, res) => {
     const result = await Todo.find();
     res.json(
         result
@@ -31,7 +32,7 @@ app.get('/todo', async (req, res)=> {
 })
 
 
-app.get('/hello', async (req, res)=> {
+app.get('/hello', async (req, res) => {
 
     res.json(
         {
@@ -48,7 +49,7 @@ app.post('/signup', async (req, res) => {
         email: req.body.email,
         password: req.body.password
     })
-    console.log("signup:",result)
+    console.log("signup:", result)
     res.json({
         message: result,
 
@@ -73,7 +74,7 @@ app.post("/login", async (req, res) => {
         if (user) {
             //check password
             console.log(user.password, req.body.password);
-            if(user.password === req.body.password){
+            if (user.password === req.body.password) {
                 res.json({
                     message: "login successful",
                     user: {
@@ -98,29 +99,29 @@ app.post("/login", async (req, res) => {
 
 
 
-app.delete('/todo/:id', async (req, res)=> {
+app.delete('/todo/:id', async (req, res) => {
 
-    const result =  await Todo.findByIdAndDelete(req.params.id);
+    const result = await Todo.findByIdAndDelete(req.params.id);
     res.json(result);
 })
 
 app.put("/todo/:id", async (req, res) => {
-    var query = {'_id': req.params.id};
+    var query = { '_id': req.params.id };
     const update = {
         ...req.body
     };
 
-        let results = await Todo.findOneAndUpdate(query, update, {upsert: true});
-        results = await Todo.findOne(query);
+    let results = await Todo.findOneAndUpdate(query, update, { upsert: true });
+    results = await Todo.findOne(query);
 
-        res.json({
-            success: true,
-            data: results,
-        });
+    res.json({
+        success: true,
+        data: results,
+    });
 
 })
 
-app.post('/cat', async (req, res)=> {
+app.post('/cat', async (req, res) => {
     const result = await Cat.create({
         link: req.body.link,
         breed: req.body.breed,
@@ -131,20 +132,20 @@ app.post('/cat', async (req, res)=> {
     res.json(result)
 })
 
-app.get('/cat', async (req, res)=> {
+app.get('/cat', async (req, res) => {
     const result = await Cat.find();
     res.json(
         result
     )
 })
 
-app.post('/contacts', async (req, res)=> {
+app.post('/contacts', async (req, res) => {
     const result = await Contacts.create({
         firstName: req.body.first,
         lastName: req.body.last,
         email: req.body.email,
         comment: req.body.comment,
-        
+
     })
     res.json(result)
 })
@@ -152,6 +153,6 @@ app.post('/contacts', async (req, res)=> {
 
 
 
-const listener = app.listen( port || process.env.PORT , () => {
+const listener = app.listen(port, () => {
     console.log('Server started at http://localhost:' + listener.address().port);
 })

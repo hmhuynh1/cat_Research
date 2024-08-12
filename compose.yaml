@@ -10,8 +10,6 @@
 services:
   server:
     build:
-      args:
-        - MONGO_URL=mongodb+srv://CatRearch:1zjOwlivzf17OEZI@books-data.xk6gxfq.mongodb.net/?retryWrites=true&w=majority&appName=books-data
       context: .
     # image: node:20.15-alpine
     image: hongmhuynh1/cat-research:latest

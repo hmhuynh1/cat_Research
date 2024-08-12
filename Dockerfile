@@ -12,6 +12,9 @@ ARG NODE_VERSION=20.15
 # Use node image for base image for all stages.
 FROM node:${NODE_VERSION}-alpine as base
 
+ARG MONGO_URL_ARG
+ENV MONGO_URL=$MONGO_URL_ARG
+
 # Set working directory for all build stages.
 WORKDIR /app
 
@@ -33,6 +36,9 @@ RUN --mount=type=bind,source=package.json,target=package.json \
 # Create a stage for building the application.
 FROM deps as build
 
+ARG MONGO_URL_ARG
+ENV MONGO_URL=$MONGO_URL_ARG
+
 # Download additional development dependencies before building, as some projects require
 # "devDependencies" to be installed to build. If you don't need this, remove this step.
 RUN --mount=type=bind,source=package.json,target=package.json \
@@ -52,6 +58,8 @@ RUN --mount=type=bind,source=package.json,target=package.json \
 # where the necessary files are copied from the build stage.
 FROM base as final
 
+ARG MONGO_URL_ARG
+ENV MONGO_URL=$MONGO_URL_ARG
 # Use production node environment by default.
 ENV NODE_ENV production
 
