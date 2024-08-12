@@ -14,8 +14,8 @@ services:
     # image: node:20.15-alpine
     image: hongmhuynh1/cat-research:latest
     
-    # volumes:
-    #   - .:/app
+    volumes:
+      - .:/app
     environment:
       NODE_ENV: production
     env_file:
