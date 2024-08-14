@@ -23,7 +23,7 @@ services:
     ports:
       - 3000:3000
       - 3001:3001
-    command: [ "sh", "-c", "node server.cjs & npm run start " ]
+    command: [ "sh", "-c", "npm i && npm run serve" ]
 
   client:
     # image: node:20.15-alpine
@@ -38,7 +38,7 @@ services:
       VITE_SERVER_URL: http://localhost:3000/
     ports:
       - 5173:5173
-    command: npm i && npm run dev
+    command: npm i && npm run dev:client
 
 # The commented out section below is an example of how to define a PostgreSQL
 # database that your application can use. `depends_on` tells Docker Compose to
