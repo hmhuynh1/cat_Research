@@ -1,5 +1,7 @@
 import {Box, Flex, Text, Heading, Link} from "@chakra-ui/react";
 import {useEffect, useState} from "react";
+// import catBG from "./assets/advice.png";
+
 
 export default function Favorites(){
 
@@ -17,6 +19,7 @@ export default function Favorites(){
     }, []);
 
     return <Box padding={"20px"}>
+        
         <Heading>Helpful Advices</Heading>
         <section>
 

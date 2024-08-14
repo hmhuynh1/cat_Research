@@ -12,7 +12,7 @@ services:
     build:
       context: .
     # image: node:20.15-alpine
-    image: hongmhuynh1/cat-research:latest
+    image: hongmhuynh1/cat-research:7bfe5fc
     
     volumes:
       - .:/app
@@ -31,10 +31,11 @@ services:
       context: .
       dockerfile: DockerfileClient
     image: hongmhuynh1/cat-research-client:latest
-    # volumes:
-    #   - .:/app
+    volumes:
+      - .:/app
     environment:
       NODE_ENV: production
+      VITE_SERVER_URL: http://localhost:3000/
     ports:
       - 5173:5173
     command: npm i && npm run dev

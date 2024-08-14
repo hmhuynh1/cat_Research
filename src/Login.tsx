@@ -12,7 +12,7 @@ export default function SignUp(){
 
         console.log( e.target.email.value, e.target.password.value)
 
-        const response = await fetch("http://localhost:3001/login", {
+        const response = await fetch(import.meta.env.VITE_SERVER_URL  +"login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

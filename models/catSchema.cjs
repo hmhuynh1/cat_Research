@@ -18,7 +18,7 @@ const CatSchema = new Schema({
     advice: {
         type: String
     },
-
+   
 },  {
 
 });

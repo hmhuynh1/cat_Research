@@ -2,7 +2,7 @@ import { Box, Flex, Heading, FormControl, FormLabel, Input, Textarea, Button } f
 import React, { FormEvent, useState } from "react";
 import catBG from "./assets/catHi.jpg"; // Ensure this path is correct
 
-export default function Advice() {
+export default function Contacts() {
     const [form, setForm] = useState({
         first: "",
         last: "",
@@ -23,7 +23,7 @@ export default function Advice() {
         e.preventDefault();
 
         try {
-            const response = await fetch("http://localhost:3001/contacts", {
+            const response = await fetch(import.meta.env.VITE_SERVER_URL  +"contacts", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -72,7 +72,7 @@ export default function Advice() {
                     as="section"
                     fontWeight={400}
                     padding="20px"
-                    bg="rgba(0, 0, 0, 0.6)" // Slightly darker for better readability
+                    bg="rgba(0, 0, 0, 0.8)" // Slightly darker for better readability
                     borderRadius="md"
                     maxWidth="500px"
                     width="100%"

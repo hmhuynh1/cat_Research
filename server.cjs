@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const multer = require('multer');
 const path = require('path');
 const app = express();
 const port = process.env.PORT ?? 3001;
@@ -10,13 +11,21 @@ const Contacts = require("./models/contactsSchema.cjs")
 const cors = require("cors")
 //middleware
 // parse requests of content-type - application/json
-app.use(cors())
+app.use(cors({origin:'*'}))
 app.use(express.static('dist'))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 main().catch(err => console.log(err));
 
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads/');
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + path.extname(file.originalname));
+    }
+})
 
 async function main() {
     await mongoose.connect(process.env.MONGO_URL);
@@ -121,15 +130,23 @@ app.put("/todo/:id", async (req, res) => {
 
 })
 
-app.post('/cat', async (req, res) => {
-    const result = await Cat.create({
-        link: req.body.link,
-        breed: req.body.breed,
-        food: req.body.food,
-        toy: req.body.toy,
-        advice: req.body.advice
-    })
-    res.json(result)
+// app.post('/cat', async (req, res) => {
+//     const result = await Cat.create({
+//         link: req.body.link,
+//         breed: req.body.breed,
+//         food: req.body.food,
+//         toy: req.body.toy,
+//         advice: req.body.advice
+//     })
+//     res.json(result)
+// })
+app.use('/uploads', express.static('uploads'));
+const upload = multer({ storage });
+app.post('/cat', upload.single('picture'), (req, res) => {
+    console.log(req.body)
+    console.log("file", req.file);
+
+    res.json({message: "success"});
 })
 
 app.get('/cat', async (req, res) => {

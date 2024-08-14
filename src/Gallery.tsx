@@ -15,6 +15,11 @@ import H12 from "./assets/Siamese.jpg"
 import H13 from "./assets/Siberian.jpg"
 import H14 from "./assets/Ragdoll.jpg"
 import H15 from "./assets/Abyssinian.jpeg"
+import H16 from "./assets/Scottish_fold.jpeg"
+import H17 from "./assets/Sphynx.jpeg"
+import H18 from "./assets/Oriental_Shorthair.jpeg"
+import H19 from "./assets/Cornish_rex.jpeg"
+import H20 from "./assets/ragamuffin.jpg"
 
 
 import { useNavigate } from 'react-router-dom';
@@ -189,10 +194,10 @@ function App() {
           <Img src={H14} maxW="310px" borderRadius="20px" margin="10px 0" />
           <Text color="white">
           The Ragdoll is a blue-eyed, and 1 on CFA’s list of most popular cat breeds for four years in a row.
-          This breed is easily recognized by their fluffy, long-haired coats and mellow disposition. 
           They’re known to be affectionate, playful, intelligent, intelligence, and friendly 
-          manner—and even get along with other animals and children. Ragdolls don’t shed as much as other cats due to their soft outer hair layer, 
-          but they will still need to be groomed during the change of seasons to keep their coat looking shiny and strong.
+          manner—and even get along with other animals and children. 
+          Ragdolls don’t shed as much as other cats due to their soft outer hair layer, 
+          but they will still need to be groomed during the change of seasons.
           </Text>
         </Box>
 
@@ -210,29 +215,69 @@ function App() {
 
 
         <Box className="breed-info">
-          <Text color="#22CE83">Ab</Text>
-          <Img src={H15} maxW="310px" borderRadius="20px" margin="10px 0" />
+          <Text color="#22CE83">Scottish Fold</Text>
+          <Img src={H16} maxW="310px" borderRadius="20px" margin="10px 0" />
           <Text color="white">
-          Reminiscent of ancient Egyptian cats, the Abyssinian breed has a long, arched neck, muscular body, 
-          big ears and almond-shaped eyes. Abyssinians are one of the oldest known cat breeds with a unique 
-          ticked coat that appears translucent and can come in many different colors. They are smart, athletic, 
-          companionable.This breed requires only minimal brushing to maintain its pretty coat. 
-          Abyssinians is enjoy being around people and being the center of attention.
+          Scottish Fold is Known for its round head and large, round eyes, folded ears, 
+          which point down toward the head like a fitted cap and contribute to their adorable, it has a short, 
+          dense coat and a medium-sized body. This breed has a loving nature with a 
+          quiet voice and relaxed personality that doesn’t require much fuss to be happy. 
+          They also don’t require extensive grooming or exercise and are loyal to their human companions.
           </Text>
         </Box>
        
+
         <Box className="breed-info">
-          <Text color="#22CE83">Abyssinian</Text>
-          <Img src={H15} maxW="310px" borderRadius="20px" margin="10px 0" />
+          <Text color="#22CE83">Sphynx</Text>
+          <Img src={H17} maxW="310px" borderRadius="20px" margin="10px 0" />
           <Text color="white">
-          Reminiscent of ancient Egyptian cats, the Abyssinian breed has a long, arched neck, muscular body, 
-          big ears and almond-shaped eyes. Abyssinians are one of the oldest known cat breeds with a unique 
-          ticked coat that appears translucent and can come in many different colors. They are smart, athletic, 
-          companionable.This breed requires only minimal brushing to maintain its pretty coat. 
-          Abyssinians is enjoy being around people and being the center of attention.
+          The sphynx is easily recognizable with their small heads, 
+          huge pointed ears and hairless body. They come in a variety of colors and patterns in a fine, peachy down fuzz. 
+          They have loose skin, which makes them extra wrinkly.medium-sized and sturdy and can be silly 
+          and clumsy. This social breed is mischievous and enjoys human attention and lots of activity. 
+          They need regular bathing every few months to remove build-up of body oils.
           </Text>
         </Box>
         
+
+        <Box className="breed-info">
+          <Text color="#22CE83">Oriental Shorthair</Text>
+          <Img src={H18} maxW="310px" borderRadius="20px" margin="10px 0" />
+          <Text color="white">
+          Elegant, with long legs and flared ears, this cat has a short coat that comes in many colorsPart of the Siamese breed group, 
+          the oriental shorthair is playful, often nudging you or sitting on your lap. This cat is curious and intelligent.
+          known to explore their homes and entertain themselves.They demand a lot of attentionGrooming their fine coat is easy, requiring a good combing every week or two.
+          
+          </Text>
+        </Box>
+
+        <Box className="breed-info">
+          <Text color="#22CE83">Cornish Rex</Text>
+          <Img src={H19} maxW="310px" borderRadius="20px" margin="10px 0" />
+          <Text color="white">
+          The Cornish rex has a super soft, curly coat, with large, expressive ears. This is an active breed that enjoys playing fetch, 
+          tossing objects and having fun with their humans. This is a sturdy breed with an egg-shaped head with high cheekbones and a 
+          Roman nose in sharp contrast to its small waist and long legs. The Cornish rex is low-maintenance 
+          when it comes to grooming and too much grooming can actually hurt their soft coat.
+          
+          </Text>
+        </Box>
+
+        <Box className="breed-info">
+          <Text color="#22CE83">Ragamuffin</Text>
+          <Img src={H20} maxW="310px" borderRadius="20px" margin="10px 0" />
+          <Text color="white">
+          The captivating Ragamuffin has a stunning appearance and expressive eyes. 
+          Their rabbit-like soft coats come in various coat colors and patterns. Surprisingly, 
+          their medium-long, fully furred coats are actually low maintenance and invite endless petting. 
+          These medium to large cats have a sweet and endearing personality.
+          Ragamuffins tend to form strong bonds and are wonderful with children and other pets. 
+          Known for their calm disposition, they will happily engage in play but should be kept indoors due to their trusting nature.
+          
+
+
+          </Text>
+        </Box>
 
       </Box>
     </Box><br /><br />
