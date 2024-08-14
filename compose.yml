@@ -13,7 +13,7 @@ services:
       context: .
     # image: node:20.15-alpine
     image: hongmhuynh1/cat-research:7bfe5fc
-    
+
     volumes:
       - .:/app
     environment:
@@ -27,7 +27,7 @@ services:
 
   client:
     # image: node:20.15-alpine
-    build: 
+    build:
       context: .
       dockerfile: DockerfileClient
     image: hongmhuynh1/cat-research-client:latest
@@ -38,7 +38,7 @@ services:
       VITE_SERVER_URL: http://localhost:3000/
     ports:
       - 5173:5173
-    command: npm i && npm run dev:client
+    command: [ 'sh', '-c', npm i && npm run dev:client' ]
 
 # The commented out section below is an example of how to define a PostgreSQL
 # database that your application can use. `depends_on` tells Docker Compose to
