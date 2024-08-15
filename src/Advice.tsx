@@ -49,11 +49,11 @@ export default function Advice() {
         if (form.picture) {
             formData.append("picture", form.picture);
         }
-
+        console.log("check2", e.target)
         try {
-            const response = await fetch(import.meta.env.VITE_SERVER_URI  +"cat", {
+            const response = await fetch("http://localhost:10000/upload-magic", {
                 method: "POST",
-                body: formData
+                body: new FormData(e.target)
             });
 
             if (!response.ok) {
@@ -109,7 +109,7 @@ export default function Advice() {
                             <FormLabel color="white">Upload Picture:</FormLabel>
                             <Input
                                 type="file"
-                                name="picture"
+                                name="uploaded_file"
                                 accept="image/*"
                                 onChange={fileChangeHandler}
                                 bg="white"

@@ -11,6 +11,11 @@ const Cat = require("./models/catSchema.cjs")
 const Contacts = require("./models/contactsSchema.cjs")
 const cors = require("cors")
 
+
+const { imageStorage, certificateStorage } = require("./middleware/storage.cjs");
+const imageUpload = multer({ storage: imageStorage });
+
+
 app.use(cors())
 
 
@@ -116,6 +121,14 @@ app.put("/todo/:id", async (req, res) => {
 
 
 app.use('/uploads', express.static('uploads'));
+
+
+
+
+
+
+
+
 const upload = multer({ storage });
 app.post('/cat', upload.single('picture'), async (req, res) => {
     console.log(req.body)
@@ -152,7 +165,32 @@ app.post('/contacts', async (req, res) => {
 })
 
 
+app.post(
+    "/upload-magic",
+    imageUpload.single("uploaded_file"),
+    async (req, res) => {
 
+        console.log("upload!!")
+    
+      let newPath = null;
+        console.log("catch", req.file)
+      if (req.file !== undefined) {
+        //success
+        console.log("file proccessed:", req.file);
+        newPath = req.file.path.substring(req.file.path.indexOf("/") + 1);
+  
+        res.json({
+          message: "Image Upload Success",
+          image: req.file.filename,
+        });
+      } else {
+        res.json({
+          message: "Image Upload Failed",
+        });
+      }
+    }
+  );
+  
 
 const listener = app.listen(port, () => {
     console.log('Server started at http://localhost:' + listener.address().port);
