@@ -2,13 +2,13 @@ import { Box, Flex, Heading, FormControl, FormLabel, Input, Textarea, Button } f
 import React, { FormEvent, useState } from 'react';
 import catBG from './assets/catHi.jpg'; // Ensure this path is correct
 
-export default function Advice() {
-	const [form, setForm] = useState({
-		first: '',
-		last: '',
-		email: '',
-		comment: '',
-	});
+export default function Contacts() {
+    const [form, setForm] = useState({
+        first: "",
+        last: "",
+        email: "",
+        comment: ""
+    });
 
 	// Handler for input changes
 	const changeHandler = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
@@ -22,14 +22,14 @@ export default function Advice() {
 	const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
-		try {
-			const response = await fetch(import.meta.env.SERVER_URL + '/contacts', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify(form),
-			});
+        try {
+            const response = await fetch(import.meta.env.VITE_SERVER_URL  +"contacts", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(form),
+            });
 
 			// Check if response is ok
 			if (!response.ok) {
@@ -51,38 +51,49 @@ export default function Advice() {
 		}
 	};
 
-	return (
-		<Box backgroundImage={`url(${catBG})`} backgroundSize='cover' backgroundPosition='center' backgroundRepeat='no-repeat' padding='40px' minHeight='100vh'>
-			<Flex
-				direction={['column', 'column', 'row']}
-				gap='20px'
-				padding='20px'
-				justify='flex-start' // Align items to the left
-				align='center'
-				marginLeft='0' // Adjust this to move the content to the left
-			>
-				<Box
-					as='section'
-					fontWeight={400}
-					padding='20px'
-					bg='rgba(0, 0, 0, 0.6)' // Slightly darker for better readability
-					borderRadius='md'
-					maxWidth='500px'
-					width='100%'
-					marginLeft='0' // Ensure there's no additional left margin
-				>
-					<Heading textAlign='center' fontSize='30px' color='white' mb={6}>
-						Contact Us
-					</Heading>
-					<form
-						onSubmit={(e) => {
-							submitHandler(e);
-						}}
-					>
-						<FormControl id='first-name' mb={4} isRequired>
-							<FormLabel color='white'>First Name</FormLabel>
-							<Input name='first' type='text' value={form.first} onChange={changeHandler} placeholder='Enter your first name' bg='white' color='black' />
-						</FormControl>
+    return (
+        <Box
+            backgroundImage={`url(${catBG})`}
+            backgroundSize="cover"
+            backgroundPosition="center"
+            backgroundRepeat="no-repeat"
+            padding="40px"
+            minHeight="100vh"
+        >
+            <Flex
+                direction={["column", "column", "row"]}
+                gap="20px"
+                padding="20px"
+                justify="flex-start" // Align items to the left
+                align="center"
+                marginLeft="0" // Adjust this to move the content to the left
+            >
+                <Box
+                    as="section"
+                    fontWeight={400}
+                    padding="20px"
+                    bg="rgba(0, 0, 0, 0.8)" // Slightly darker for better readability
+                    borderRadius="md"
+                    maxWidth="500px"
+                    width="100%"
+                    marginLeft="0" // Ensure there's no additional left margin
+                >
+                    <Heading textAlign="center" fontSize="30px" color="white" mb={6}>
+                        Contact Us
+                    </Heading>
+                    <form onSubmit={e => { submitHandler(e); }}>
+                        <FormControl id="first-name" mb={4} isRequired>
+                            <FormLabel color="white">First Name</FormLabel>
+                            <Input
+                                name="first"
+                                type="text"
+                                value={form.first}
+                                onChange={changeHandler}
+                                placeholder="Enter your first name"
+                                bg="white"
+                                color="black"
+                            />
+                        </FormControl>
 
 						<FormControl id='last-name' mb={4} isRequired>
 							<FormLabel color='white'>Last Name</FormLabel>

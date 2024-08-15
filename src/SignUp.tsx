@@ -69,18 +69,67 @@ export default function SignUp() {
 							<Input name='password' type='password' />
 						</FormControl>
 
-						<FormLabel color='Red'>{error}</FormLabel>
-						<FormControl style={{ textAlign: 'center' }}>
-							<Input className={'glow'} type='submit' value='Join Us' />
-						</FormControl>
-						<FormControl style={{ textAlign: 'center' }}>
-							<Button className={'glow'} onClick={() => navigate('/login')}>
-								Login
-							</Button>
-						</FormControl>
-					</form>
-				</Box>
-			</Flex>
-		</Box>
-	);
+
+        const response = await fetch(import.meta.env.VITE_SERVER_URL  +"signup", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                email: e.target.email.value,
+                password: e.target.password.value
+            }),
+
+        });
+        const data = await response.json();
+        console.log(data)
+        navigate("/login");
+    }
+
+
+    //New CODE ***************
+    function emailHandler(e: ChangeEvent<HTMLInputElement>) {
+        console.log(e.target.value)/**/
+        console.log("validation")/**/
+        if (e.target.value.endsWith(".com") || e.target.value.endsWith(".edu") || e.target.value.endsWith(".org")) {
+            setError("")
+        }
+        else {
+            setError("Please use: .com, .edu. or .org")
+            return
+        }
+
+    }
+
+
+    return <Box backgroundImage={catBG} >
+        <Flex justifyContent={"center"} alignItems={"center"} height={"100vh"}>
+            <Box maxW={"900px"} minW={"400px"} padding={"20px"} borderRadius={"20px"} backgroundColor={"#5dbab1"} margin={"auto"}>
+
+                <Heading>Sign Up</Heading><br></br>
+                <form onSubmit={submitHandler} method="POST">
+
+                    <FormControl style={{ paddingTop: "10px" }}>
+                        <FormLabel>Email address</FormLabel>
+                        <Input name="email" type='email' onChange={emailHandler} />
+
+
+                    </FormControl>
+                    <FormControl style={{ paddingBottom: "10px" }}>
+                        <FormLabel>Password</FormLabel>
+                        <Input name="password" type='password' />
+                    </FormControl>
+
+
+                    <FormLabel color="Red">{error}</FormLabel>
+                    <FormControl style={{ textAlign: "center" }}>
+                        <Input className={"glow"} type="submit" value="Join Us" />
+                    </FormControl>
+                    <FormControl style={{ textAlign: "center" }}>
+                        <Button className={"glow"} onClick={() => navigate('/login')}>Login</Button>
+                    </FormControl>
+                </form>
+            </Box>
+        </Flex>
+    </Box>
 }

@@ -12,24 +12,16 @@ export default function SignUp() {
 
 		console.log(e.target.email.value, e.target.password.value);
 
-		const response = await fetch(import.meta.env.SERVER_URL + '/login', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				email: e.target.email.value,
-				password: e.target.password.value,
-			}),
-		});
-		const data = await response.json();
-		console.log('login', data);
-		if (data.message === 'login successful') {
-			localStorage.setItem('user', JSON.stringify(data.user));
-			navigate('/');
-		} else {
-			setError('Invalid email or passward');
-		}
+        console.log(import.meta.env)
+        const response = await fetch(import.meta.env.VITE_SERVER_URI  +"login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                email: e.target.email.value,
+                password: e.target.password.value
+            }),
 
 		console.log(data);
 	};
@@ -44,9 +36,6 @@ export default function SignUp() {
 	//     mt:"30px"
 	// }
 
-	const bgStyle = {
-		backgroundSize: 'cover',
-	};
 
 	return (
 		<Box backgroundImage={catBG} style={bgStyle}>
