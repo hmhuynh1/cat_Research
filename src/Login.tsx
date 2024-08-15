@@ -37,15 +37,6 @@ export default function SignUp(){
 
     }
 
-    // const buttonStyle = {
-    //     backgroundColor: "white",
-    //     border: "10px",
-    //     borderRadius: "18px",
-    //     padding: "10px",
-    //     fontWeight: 400,
-    //     fontSize: "16px",
-    //     mt:"30px"
-    // }
 
     const bgStyle = {
         backgroundSize: 'cover'

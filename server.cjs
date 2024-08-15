@@ -13,9 +13,7 @@ const cors = require("cors")
 
 app.use(cors())
 
-//middleware
-// parse requests of content-type - application/json
-//app.use(cors({origin:'*'}))
+
 app.use(express.static('dist'))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -35,24 +33,6 @@ async function main() {
     await mongoose.connect(process.env.MONGO_URL);
     console.log('start of main')
 }
-
-
-app.get('/todo', async (req, res) => {
-    const result = await Todo.find();
-    res.json(
-        result
-    )
-})
-
-
-app.get('/hello', async (req, res) => {
-
-    res.json(
-        {
-            message: "hello"
-        }
-    )
-})
 
 
 
@@ -134,16 +114,7 @@ app.put("/todo/:id", async (req, res) => {
 
 })
 
-// app.post('/cat', async (req, res) => {
-//     const result = await Cat.create({
-//         link: req.body.link,
-//         breed: req.body.breed,
-//         food: req.body.food,
-//         toy: req.body.toy,
-//         advice: req.body.advice
-//     })
-//     res.json(result)
-// })
+
 app.use('/uploads', express.static('uploads'));
 const upload = multer({ storage });
 app.post('/cat', upload.single('picture'), async (req, res) => {

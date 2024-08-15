@@ -152,7 +152,7 @@ export default function Advice() {
                                 type="text"
                                 value={form.link}
                                 onChange={changeHandler}
-                                placeholder="www.petsmart.com"
+                                placeholder="URL website link"
                                 bg="white"
                                 color="black"
                             />
