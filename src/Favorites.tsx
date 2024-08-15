@@ -7,7 +7,7 @@ export default function Favorites(){
 
     const [data, setData] = useState([])
     const getCat = async ()=> {
-        const response = await fetch('http://localhost:3001/cat');
+        const response = await fetch(import.meta.env.VITE_SERVER_URI  +"cat",);
         const d = await response.json();
         console.log("check",d)
         setData(d);

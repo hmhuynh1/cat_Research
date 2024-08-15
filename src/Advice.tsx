@@ -51,7 +51,7 @@ export default function Advice() {
         }
 
         try {
-            const response = await fetch(import.meta.env.VITE_SERVER_URL  +"cat", {
+            const response = await fetch(import.meta.env.VITE_SERVER_URI  +"cat", {
                 method: "POST",
                 body: formData
             });
@@ -98,7 +98,7 @@ export default function Advice() {
                     padding="30px"
                     bg="rgba(0, 0, 0, 0.8)"
                     borderRadius="md"
-                    maxWidth="500px"
+                    maxWidth="450px"
                     width="100%"
                 >
                     <Heading textAlign="center" fontSize="30px" color="white" mb={6}>
@@ -130,18 +130,7 @@ export default function Advice() {
                             />
                         </FormControl>
 
-                        <FormControl id="link" mb={4} isRequired>
-                            <FormLabel color="white">Where to buy:</FormLabel>
-                            <Input
-                                name="link"
-                                type="text"
-                                value={form.link}
-                                onChange={changeHandler}
-                                placeholder="www.petsmart.com"
-                                bg="white"
-                                color="black"
-                            />
-                        </FormControl>
+                        
 
                         <FormControl id="food" mb={4} isRequired>
                             <FormLabel color="white">Food Brand:</FormLabel>
@@ -151,6 +140,19 @@ export default function Advice() {
                                 value={form.food}
                                 onChange={changeHandler}
                                 placeholder="Food brand"
+                                bg="white"
+                                color="black"
+                            />
+                        </FormControl>
+
+                        <FormControl id="link" mb={4} isRequired>
+                            <FormLabel color="white">Where to buy:</FormLabel>
+                            <Input
+                                name="link"
+                                type="text"
+                                value={form.link}
+                                onChange={changeHandler}
+                                placeholder="www.petsmart.com"
                                 bg="white"
                                 color="black"
                             />
@@ -168,6 +170,7 @@ export default function Advice() {
                                 color="black"
                             />
                         </FormControl>
+
 
                         <FormControl id="advice" mb={4} isRequired>
                             <FormLabel color="white">Advice:</FormLabel>
