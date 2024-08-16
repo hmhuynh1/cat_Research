@@ -7,7 +7,7 @@ export default function Favorites() {
 
 	const getCat = async () => {
 		try {
-			const response = await fetch(import.meta.env.VITE_SERVER_URL + 'cat');
+			const response = await fetch(import.meta.env.VITE_SERVER_URI + 'cat');
 			if (!response.ok) {
 				throw new Error('Network response was not ok');
 			}

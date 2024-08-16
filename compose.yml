@@ -50,7 +50,7 @@ services:
   #     - .:/app
   #   environment:
   #     NODE_ENV: production
-  #     VITE_SERVER_URL: http://localhost:3000/
+  #     VITE_SERVER_URI: http://localhost:3000/
   #   ports:
   #     - 5173:5173
   #   command:  npm i && npm run dev:client

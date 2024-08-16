@@ -23,7 +23,7 @@ export default function Contacts() {
 		e.preventDefault();
 
         try {
-            const response = await fetch(import.meta.env.VITE_SERVER_URL  +"contacts", {
+            const response = await fetch(import.meta.env.VITE_SERVER_URI  +"contacts", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

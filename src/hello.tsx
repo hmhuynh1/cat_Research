@@ -26,7 +26,7 @@ export default function Advice(){
     const submitHandler = async (e: any)=>{
         e.preventDefault();
 
-        const response = await fetch(import.meta.env.VITE_SERVER_URL  +"cat", {
+        const response = await fetch(import.meta.env.VITE_SERVER_URI  +"cat", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
