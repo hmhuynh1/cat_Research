@@ -8,37 +8,50 @@
 # database or a cache. For examples, see the Awesome Compose repository:
 # https://github.com/docker/awesome-compose
 services:
-  server:
+  server: &server
     build:
       context: .
-    # image: node:20.15-alpine
-    image: hongmhuynh1/cat-research:7bfe5fc
-
+      tags:
+        - latest
+        - ${tag:-latest}
+    image: ${REPO:-hongmhuynh1/cat-research}
+    
     volumes:
       - .:/app
     environment:
       NODE_ENV: production
+      SERVER_URL: http://localhost:3000
     env_file:
       - .env
     ports:
       - 3000:3000
       - 3001:3001
-    command: [ "sh", "-c", "npm i && npm run serve" ]
+    command: npm i && npm run serve
 
   client:
-    # image: node:20.15-alpine
-    build:
-      context: .
-      dockerfile: DockerfileClient
-    image: hongmhuynh1/cat-research-client:latest
-    volumes:
-      - .:/app
-    environment:
-      NODE_ENV: production
-      VITE_SERVER_URL: http://localhost:3000/
+    <<: *server
     ports:
       - 5173:5173
-    command: [ 'sh', '-c', npm i && npm run dev:client' ]
+    command: npm i && npm run dev:client
+
+  # client:
+  #   # image: node:20.15-alpine
+  #   build:
+  #     context: .
+  #     dockerfile: DockerfileClient
+    
+  #   # image: asieduernest/catty-res-client:latest
+  #   # image: hongmhuynh1/cat-research-client:latest
+  #   # image: hongmhuynh1/cat-research:latest
+
+  #   volumes:
+  #     - .:/app
+  #   environment:
+  #     NODE_ENV: production
+  #     VITE_SERVER_URL: http://localhost:3000/
+  #   ports:
+  #     - 5173:5173
+  #   command:  npm i && npm run dev:client
 
 # The commented out section below is an example of how to define a PostgreSQL
 # database that your application can use. `depends_on` tells Docker Compose to
