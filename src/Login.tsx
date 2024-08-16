@@ -4,7 +4,7 @@ import catBG from './assets/grassCat.png';
 import { useState } from 'react';
 
 export default function SignUp() {
-	const [error, setError] = useState('');
+	const [error] = useState('');
 
 	const navigate = useNavigate();
 	const submitHandler = async (e: any) => {
@@ -12,18 +12,16 @@ export default function SignUp() {
 
 		console.log(e.target.email.value, e.target.password.value);
 
-        console.log(import.meta.env)
-        const response = await fetch(import.meta.env.VITE_SERVER_URI  +"login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                email: e.target.email.value,
-                password: e.target.password.value
-            }),
-
-		console.log(data);
+		await fetch(import.meta.env.VITE_SERVER_URL + 'login', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				email: e.target.email.value,
+				password: e.target.password.value,
+			}),
+		});
 	};
 
 	// const buttonStyle = {
@@ -36,6 +34,9 @@ export default function SignUp() {
 	//     mt:"30px"
 	// }
 
+	const bgStyle = {
+		backgroundSize: 'cover',
+	};
 
 	return (
 		<Box backgroundImage={catBG} style={bgStyle}>

@@ -10,7 +10,7 @@ ARG NODE_VERSION=20.15
 
 ################################################################################
 # Use node image for base image for all stages.
-FROM node:${NODE_VERSION}-alpine as base
+FROM mcr.microsoft:${NODE_VERSION}-alpine as base
 
 ARG MONGO_URL
 ENV MONGO_URL=$MONGO_URL
@@ -45,17 +45,17 @@ ENV MONGO_URL=$MONGO_URL
 # Download additional development dependencies before building, as some projects require
 # "devDependencies" to be installed to build. If you don't need this, remove this step.
 RUN --mount=type=bind,source=package.json,target=package.json \
---mount=type=bind,source=package-lock.json,target=package-lock.json \
+    --mount=type=bind,source=package-lock.json,target=package-lock.json \
     --mount=type=cache,target=/root/.npm \
     npm ci
 
-    
-    # Copy the rest of the source files into the image.
-    COPY . .
-    # Run the build script.
-    RUN SEVER_URL=$SERVER_URL npm run build
-    
-    ################################################################################
+
+# Copy the rest of the source files into the image.
+COPY . .
+# Run the build script.
+RUN SEVER_URL="/" npm run build
+
+################################################################################
 # Create a new stage to run the application with minimal runtime dependencies
 # where the necessary files are copied from the build stage.
 FROM base as final
@@ -65,7 +65,7 @@ ENV MONGO_URL=$MONGO_URL
 # Use production node environment by default.
 ENV NODE_ENV production
 
-RUN npm i -g vite
+# RUN npm i -g vite
 
 # Run the application as a non-root user.
 USER node

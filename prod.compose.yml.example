@@ -1,0 +1,10 @@
+services:
+  server: &server
+    image: asieduernest/catty-res:${tag:-latest}
+    environment:
+      NODE_ENV: production
+      SERVER_URL: "/"
+    ports:
+        - 3000:3000
+        - 3001:3001
+    command: node server.cjs
