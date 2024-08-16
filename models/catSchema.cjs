@@ -2,7 +2,9 @@ const { Schema, model } = require('mongoose');
 
 
 const CatSchema = new Schema({
-
+    picture: {
+        type: String
+    },
     link: {
         type: String
     },

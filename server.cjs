@@ -10,13 +10,13 @@ const User = require("./models/userSchema.cjs")
 const Cat = require("./models/catSchema.cjs")
 const Contacts = require("./models/contactsSchema.cjs")
 const cors = require("cors")
-const morgan = require('morgan');
 
-const { imageStorage, certificateStorage } = require("./middleware/storage.cjs");
+
+const { imageStorage } = require("./middleware/storage.cjs");
 const imageUpload = multer({ storage: imageStorage });
 
+const fs = require("fs");
 
-app.use(morgan('short'));
 app.use(cors())
 
 
@@ -180,8 +180,19 @@ app.post(
         console.log("file proccessed:", req.file);
         newPath = req.file.path.substring(req.file.path.indexOf("/") + 1);
   
+
+        const result = await Cat.create({
+            picture: req.file.filename,
+            breed: req.body.breed,
+            link: req.body.link,
+            food: req.body.food,
+            toy: req.body.toy,
+            advice: req.body.advice,
+        })
+
         res.json({
           message: "Image Upload Success",
+          result: result,
           image: req.file.filename,
         });
       } else {
@@ -192,6 +203,22 @@ app.post(
     }
   );
   
+
+app.get("/cat-feed", async (req, res) => {
+
+    const result = await Cat.find();
+
+
+    res.json({
+        data: result
+    })
+  
+
+
+})
+
+app.use(express.static('uploads/collection/'))
+//http://localhost:10000/uploads/collection/_image.png
 
 const listener = app.listen(port, () => {
     console.log('Server started at http://localhost:' + listener.address().port);

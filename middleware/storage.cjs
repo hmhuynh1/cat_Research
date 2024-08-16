@@ -13,7 +13,7 @@ const imageStorage = multer.diskStorage({
         if(!acceptTypes.includes(file.mimetype)){
             error = new Error('wrong file');
         }
-        const dir = 'uploads/'  ;
+        const dir = 'uploads/collection/'  ;
 
         if (!fs.existsSync(dir)){
             fs.mkdirSync(dir);
@@ -26,7 +26,7 @@ const imageStorage = multer.diskStorage({
         console.log("file::", file)
         //Date.now() +
         //path.extname(file.originalname)
-        cb(null, path.extname(file.originalname))
+        cb(null, file.originalname)
     }
 })
 
