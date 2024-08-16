@@ -1,6 +1,6 @@
 services:
   server: &server
-    image: hongmhuynh1/cat-research:${tag:-latest}
+    image: docker.io/hongmhuynh1/cat-research:${tag:-latest}
     environment:
       NODE_ENV: production
       SERVER_URL: "/"
