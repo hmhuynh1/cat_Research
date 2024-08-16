@@ -26,7 +26,7 @@ services:
     ports:
       - 3000:3000
       - 3001:3001
-    command: ['sh', '-c', 'npm i && npm i nodemon && npm run start']
+    command: ['sh', '-c', 'npm i && npm i nodemon && npm run dev:server']
     restart: unless-stopped
 
   client:

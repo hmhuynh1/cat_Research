@@ -4,9 +4,9 @@
 	"version": "0.0.0",
 	"type": "module",
 	"scripts": {
-		"serve": "nodemon -x \"node server.cjs\"",
+		"dev:server": "npx nodemon -x \"node server.cjs\"",
 		"dev:client": "npx cross-env VITE_SERVER_URL=\"http://localhost:3000/\" vite --host 0.0.0.0",
-		"dev": "concurrently \"npm run dev:client\" \"npm run serve\"",
+		"dev": "npx concurrently \"npm run dev:client\" \"npm run dev:server\"",
 		"build": "npx cross-env VITE_SERVER_URL=\"/\" tsc -b && VITE_SERVER_URL=\"/\" vite build",
 		"start": "serve dist",
 		"lint": "eslint . --ext ts,tsx --fix",
