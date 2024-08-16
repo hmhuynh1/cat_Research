@@ -27,12 +27,14 @@ services:
       - 3000:3000
       - 3001:3001
     command: ['sh', '-c', 'npm i && npm i nodemon && npm run start']
+    restart: unless-stopped
 
   client:
     <<: *server
     ports:
       - 5173:5173
-    command: ['sh', '-c', 'npm i && npm run dev:client']
+    command: ['sh', '-c', 'npm run dev:client']
+    depends_on: [server]
 
   # client:
   #   # image: node:20.15-alpine
