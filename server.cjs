@@ -10,12 +10,13 @@ const User = require("./models/userSchema.cjs")
 const Cat = require("./models/catSchema.cjs")
 const Contacts = require("./models/contactsSchema.cjs")
 const cors = require("cors")
-
+const morgan = require('morgan');
 
 const { imageStorage, certificateStorage } = require("./middleware/storage.cjs");
 const imageUpload = multer({ storage: imageStorage });
 
 
+app.use(morgan('dev'));
 app.use(cors())
 
 

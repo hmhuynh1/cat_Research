@@ -11,9 +11,11 @@ services:
   server: &server
     build:
       context: .
-    image: asieduernest/catty-res:${tag:-latest}
-    # image: hongmhuynh1/cat-research:7bfe5fc
-
+      tags:
+        - latest
+        - ${tag:-latest}
+    image: ${REPO:-hongmhuynh1/cat-research}
+    
     volumes:
       - .:/app
     environment:
