@@ -29,7 +29,7 @@ export default function Favorites() {
       backgroundImage={`url(${CA})`}
       backgroundSize="cover"
       backgroundPosition="center"
-      padding={"20px"}
+      padding={"30px"}
       color="black" // Ensure text is visible over background
     >
       <Heading mb="4">Helpful Advices</Heading>

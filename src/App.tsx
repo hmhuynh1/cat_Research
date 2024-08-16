@@ -26,7 +26,7 @@ function App() {
                 justifyContent="center" // Center content vertically if needed
                 alignItems="flex-start" // Align content to the left
                 bg="rgba(255, 255, 255, 0.8)" // Optional: Add background color to improve text readability
-                minHeight="100vh"
+                minHeight="60vh"
                 position="relative" // Ensure text container is positioned correctly
                 zIndex="1" // Ensure text is above the background image
             >
