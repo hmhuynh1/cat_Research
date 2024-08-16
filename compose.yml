@@ -15,7 +15,7 @@ services:
         - latest
         - ${tag:-latest}
     image: ${REPO:-hongmhuynh1/cat-research}
-    
+
     volumes:
       - .:/app
     environment:
@@ -26,20 +26,20 @@ services:
     ports:
       - 3000:3000
       - 3001:3001
-    command: npm i && npm run serve
+    command: ['sh', '-c', 'npm i && npm i nodemon && npm run start']
 
   client:
     <<: *server
     ports:
       - 5173:5173
-    command: npm i && npm run dev:client
+    command: ['sh', '-c', 'npm i && npm run dev:client']
 
   # client:
   #   # image: node:20.15-alpine
   #   build:
   #     context: .
   #     dockerfile: DockerfileClient
-    
+
   #   # image: asieduernest/catty-res-client:latest
   #   # image: hongmhuynh1/cat-research-client:latest
   #   # image: hongmhuynh1/cat-research:latest
@@ -52,7 +52,6 @@ services:
   #   ports:
   #     - 5173:5173
   #   command:  npm i && npm run dev:client
-
 # The commented out section below is an example of how to define a PostgreSQL
 # database that your application can use. `depends_on` tells Docker Compose to
 # start the database before your application. The `db-data` volume persists the

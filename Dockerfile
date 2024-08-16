@@ -65,7 +65,7 @@ ENV MONGO_URL=$MONGO_URL
 # Use production node environment by default.
 ENV NODE_ENV production
 
-# RUN npm i -g vite
+RUN npm i -g vite
 
 # Run the application as a non-root user.
 USER node

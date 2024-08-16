@@ -16,7 +16,7 @@ const { imageStorage, certificateStorage } = require("./middleware/storage.cjs")
 const imageUpload = multer({ storage: imageStorage });
 
 
-app.use(morgan('dev'));
+app.use(morgan('short'));
 app.use(cors())
 
 
