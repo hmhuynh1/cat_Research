@@ -1,6 +1,7 @@
 import './App.css'
 import {Box, Heading, Img, Text} from "@chakra-ui/react";
 import H1 from "./assets/H1.jpeg"
+import H2 from "./assets/g1.jpg"
 import { useNavigate } from 'react-router-dom';
 import  { useEffect } from 'react';
 function App() {
@@ -24,6 +25,10 @@ function App() {
                 margin={"10px 0px 10px 0px"}/>
                 <div className="text-content">
                 <Text color={"white"}>
+
+                <Img src={H2} maxW={"200px"} borderRadius={"30px"}
+                margin={"10px 0px 10px 0px"}/>
+               
                     
 
         We love pets, and we believe loving pets makes us better people. That’s one of the many reasons we created this website. We want to offer cat owner a plate to find out more about cat and give their they a happy life. From how to take care the cat, to find out what to expect for the first time to adopt a cat, to finding the perfect treats and toys, we created a place that cat owner can share their experience and feedback.and to create more ways for pets to be a part of our everyday lives. You also will find the link that where to buy foods or toys that are from the favorites page the cat owner submitted to us.

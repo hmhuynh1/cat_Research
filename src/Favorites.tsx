@@ -32,13 +32,13 @@ export default function Favorites() {
       backgroundSize="cover"
       backgroundPosition="center"
       padding={"20px"}
-      color="black" // Ensure text is visible over background
+      color="white" // Ensure text is visible over background
     >
-      <Heading mb="4">Helpful Advices</Heading>
+      <Heading  color="black" mb="4" >Helpful Advices</Heading>
       <section>
         <div id="center">
-          <section id="search-form-section" className="d-flex flex-column gap-4">
-            <form method="get" className="d-flex flex-column gap-4">
+          <section id="search-form-section" className="d-flex flex-column gap-2">
+            {/* <form method="get" className="d-flex flex-column gap-4">
               <input
                 type="search"
                 className="w-full p-2"
@@ -54,7 +54,7 @@ export default function Favorites() {
                   Clear
                 </button>
               </div>
-            </form>
+            </form> */}
           </section>
         </div>
 
@@ -68,7 +68,7 @@ export default function Favorites() {
                 padding={"20px"}
                 bg="rgba(0, 0, 0, 0.5)" // Optional: semi-transparent background for readability
               >
-                <Img src={import.meta.env.VITE_SERVER_URI + "uploads/collection/" + x.picture} maxW="200px" />
+                <Img src={import.meta.env.VITE_SERVER_URI + "uploads/collection/" + x.picture} maxW="250px" />
                 <Text color="yellowgreen">
                   <Link href={x.link}>{x.link}</Link>
                 </Text>

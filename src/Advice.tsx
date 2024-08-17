@@ -6,9 +6,9 @@ export default function Advice() {
     const [form, setForm] = useState<{
         picture: File | null;
         breed: string;
-        link: string;
         food: string;
         toy: string;
+		link: string;
         advice: string;
     }>({
         picture: null, // Add state for the file
@@ -42,9 +42,9 @@ export default function Advice() {
         
         const formData = new FormData();
         formData.append("breed", form.breed);
-        formData.append("link", form.link);
         formData.append("food", form.food);
         formData.append("toy", form.toy);
+		formData.append("link", form.link);
         formData.append("advice", form.advice);
         if (form.picture) {
             formData.append("picture", form.picture);
@@ -66,9 +66,9 @@ export default function Advice() {
             setForm({
                 picture: null,
                 breed: "",
-                link: "",
                 food: "",
                 toy: "",
+				link: "",
                 advice: ""
             });
         } catch (error) {
@@ -82,8 +82,8 @@ export default function Advice() {
             backgroundSize="cover"
             backgroundPosition="center"
             backgroundRepeat="no-repeat"
-            padding="40px"
-            minHeight="80vh"
+            padding="90px"
+            minHeight="90vh"
         >
             <Flex
                 direction={["column", "column", "row"]}
@@ -133,7 +133,7 @@ export default function Advice() {
                         
 
                         <FormControl id="food" mb={1} isRequired>
-                            <FormLabel color="white">Food Brand:</FormLabel>
+                            <FormLabel color="white">Food Brand & Toy Brand:</FormLabel>
                             <Input
                                 name="food"
                                 type="text"
@@ -145,7 +145,22 @@ export default function Advice() {
                             />
                         </FormControl>
 
-                        <FormControl id="link" mb={1} isRequired>
+                        
+
+                        {/* <FormControl id="toy" mb={1} isRequired>
+                            <FormLabel color="white">Toy Brand:</FormLabel>
+                            <Input
+                                name="toy"
+                                type="text"
+                                value={form.toy}
+                                onChange={changeHandler}
+                                placeholder="Toy brand"
+                                bg="white"
+                                color="black"
+                            />
+                        </FormControl> */}
+
+						<FormControl id="link" mb={1} isRequired>
                             <FormLabel color="white">Where to buy:</FormLabel>
                             <Input
                                 name="link"
@@ -157,20 +172,6 @@ export default function Advice() {
                                 color="black"
                             />
                         </FormControl>
-
-                        <FormControl id="toy" mb={1} isRequired>
-                            <FormLabel color="white">Toy Brand:</FormLabel>
-                            <Input
-                                name="toy"
-                                type="text"
-                                value={form.toy}
-                                onChange={changeHandler}
-                                placeholder="Toy brand"
-                                bg="white"
-                                color="black"
-                            />
-                        </FormControl>
-
 
                         <FormControl id="advice" mb={1} isRequired>
                             <FormLabel color="white">Advice:</FormLabel>
