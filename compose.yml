@@ -20,7 +20,7 @@ services:
       - .:/app
     environment:
       NODE_ENV: production
-      SERVER_URL: http://localhost:3000
+      SERVER_URL: http://localhost:3001
     env_file:
       - .env
     ports:
@@ -33,7 +33,7 @@ services:
     <<: *server
     ports:
       - 5173:5173
-    command: ['sh', '-c', 'npm run dev:client']
+    command: ['sh', '-c', 'npm i && npm run dev:client']
     depends_on: [server]
 
   # client:

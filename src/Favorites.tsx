@@ -70,10 +70,9 @@ export default function Favorites() {
               >
                 <Img src={import.meta.env.VITE_SERVER_URI + "uploads/collection/" + x.picture} maxW="250px" />
                 <Text color="yellowgreen">
-                  <Link href={x.link}>{x.link}</Link>
+                  link: <Link href={x.link}>{x.link}</Link>
                 </Text>
-                <Text>{x.food}</Text>
-                <Text>{x.toy}</Text>
+                <Text>toyasldkajsldkj:{x.foodtoy}</Text>
                 <Text>{x.advice}</Text>
               </Box>
             ))}

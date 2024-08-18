@@ -68,6 +68,7 @@ ENV NODE_ENV production
 
 RUN npm i -g vite
 
+
 # Run the application as a non-root user.
 USER node
 
@@ -99,4 +100,4 @@ WORKDIR /app
 # Start the app
 # CMD [ "node","server.cjs" ]
 # CMD [ "sh","-c","npm run dev & PORT=3000 node server.cjs" ]
-CMD [ "sh","-c","PORT=3000 node server.cjs"]
+CMD [ "sh","-c","PORT=3001 node server.cjs"]

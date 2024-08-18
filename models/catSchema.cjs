@@ -11,10 +11,7 @@ const CatSchema = new Schema({
     breed: {
         type: String
     },
-    food: {
-        type: String
-    },
-    toy: {
+    foodtoy: {
         type: String
     },
     advice: {
