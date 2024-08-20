@@ -1,16 +1,24 @@
 import { Box, Heading, Text } from "@chakra-ui/react";
 import catB from "./assets/h1.jpg"; // Ensure this path is correct
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+
 
 function App() {
     const navigate = useNavigate();
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);/** */
 
     useEffect(() => {
         if (!localStorage.getItem("user")) {
             navigate("/login");
         }
     }, [navigate]);
+
+    useEffect(() => {/** */
+        window.addEventListener('resize', () => {
+            setIsMobile(window.innerWidth < 768);
+        });
+    })
 
     return (
         <Box
@@ -19,7 +27,7 @@ function App() {
             display="flex"
         >
             <Box
-                width="30%" // Takes up half of the screen width
+                width={isMobile ? "100%" : "30%"} // Takes up half of the screen width
                 padding="20px"
                 display="flex"
                 flexDirection="column"
