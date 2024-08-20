@@ -36,9 +36,9 @@ export default function Favorites() {
     >
       <Heading  color="black" mb="4" >Helpful Advices</Heading>
       <section>
-        <div id="center">
-          <section id="search-form-section" className="d-flex flex-column gap-2">
-            {/* <form method="get" className="d-flex flex-column gap-4">
+        <Box  id="center" display={["none", "block"]}>
+          {/* <section id="search-form-section" className="d-flex flex-column gap-2">
+            <form method="get" className="d-flex flex-column gap-4">
               <input
                 type="search"
                 className="w-full p-2"
@@ -54,9 +54,9 @@ export default function Favorites() {
                   Clear
                 </button>
               </div>
-            </form> */}
-          </section>
-        </div>
+            </form>
+          </section> */}
+        </Box>
 
         <section className="mt-4">
           <Flex gap={"20px"} wrap="wrap">
@@ -70,10 +70,25 @@ export default function Favorites() {
               >
                 <Img src={import.meta.env.VITE_SERVER_URI + "uploads/collection/" + x.picture} maxW="250px" />
                 <Text color="yellowgreen">
-                  URL Link: <Link href={x.link}>{x.link}</Link>
+                <Text as="strong" fontWeight={"bold"} color="black"> 
+                  URL Link: 
+                  </Text>
+                  
+                  
+                  
+                  
+                  <Link href={x.link}>{x.link}</Link>
                 </Text>
-                <Text>Food or Toy: {x.foodtoy}</Text>
-                <Text>Advices: {x.advice}</Text>
+                <Text>
+                  <Text as="strong" fontWeight={"bold"} color="black">Cat Breed:</Text> {x.breed}</Text>
+                
+                <Text>
+                <Text as="strong"  fontWeight={"bold"} color="black">
+                  Food or Toy: </Text>{x.foodtoy}</Text>
+                <Text>
+                <Text as="strong" fontWeight={"bold"} color="black">
+                  Advices:
+                  </Text> {x.advice}</Text>
               </Box>
             ))}
           </Flex>

@@ -57,7 +57,7 @@ export default function Contacts() {
             backgroundSize="cover"
             backgroundPosition="center"
             backgroundRepeat="no-repeat"
-            padding="40px"
+            padding={["20px", "40px"]}
             minHeight="100vh"
         >
             <Flex

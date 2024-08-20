@@ -39,21 +39,25 @@ function App() {
                 zIndex="1" // Ensure text is above the background image
             >
                 <Heading color="black" mb={4} textAlign="left">
-                    Welcome to Cats Research
+                    WELCOME TO CATS RESEARCH 
                 </Heading>
                 <Text color="black" mb={4} textAlign="left">
                     If you are a cat owner or considering becoming one, you will love cat research. Cat research is the place where you can get all kinds of information about cats. 
-                    Learn how to adopt a cat, explore the cat breeds on the cat breeds page, and discover what to prepare for your new cat. 
+                    The latest cat news. Learn how to adopt a cat and explore the cat breeds page to find the cat that’s just right for you.
                     Find out about the best brands of cat foods and toys that will work for your cat, and enjoy all the fun facts about cats. 
-                    At cat research, you also gain valuable advice from other cat owners who have shared their experiences with their cats.<br></br><br></br><br></br><br></br>
+                    At cat research, you also gain valuable advice from other cat owners who have shared their experiences with their cats.
+        
                 
-                    <br></br><br></br><Box as="footer" padding="20px" textAlign="center" bg="black" color="white" position="relative" zIndex="2">
+                </Text><br></br><br></br><br></br><br></br>
+
+
+
+                <Box as="footer" padding="20px" textAlign="center" bg="black" color="white" position="relative" zIndex="2">
                 <Box as="span">© copyright, Made by: Hong Huynh</Box>
                 </Box>
-                
-                </Text>
             </Box>
-
+            
+            
             <Box
                 position="absolute"
                 top="0"

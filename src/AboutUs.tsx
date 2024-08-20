@@ -1,9 +1,10 @@
-import './App.css'
-import {Box, Heading, Img, Text} from "@chakra-ui/react";
-import H1 from "./assets/H1.jpeg"
-import H2 from "./assets/g1.jpg"
+import './App.css';
+import { Box, Heading, Img, Text } from "@chakra-ui/react";
+import H1 from "./assets/H1.jpeg";
+import H2 from "./assets/g1.jpg";
 import { useNavigate } from 'react-router-dom';
-import  { useEffect } from 'react';
+import { useEffect } from 'react';
+
 function App() {
     const navigate = useNavigate();
 
@@ -11,47 +12,44 @@ function App() {
         if (!localStorage.getItem("user")) {
             navigate("/login");
         }
-        
-    }, []);
+    }, [navigate]); // Added 'navigate' to dependency array
 
-  return (
-      <>
-          
-            <Box as={"main"} padding={"20px"} className="content-wrapper2 text-and-image">
-                <Heading color={"white"}>
-                    About Us
+    return (
+        <>
+            <Box 
+                as="main" 
+                padding="20px" 
+                className="content-wrapper2 text-and-image" 
+                textAlign="left" // Align text to the left
+                maxWidth="800px" // Optional: Set a max width for better readability
+                pt="100px"
+            >
+                <Heading color="black" mb={4} textAlign="left">
+                    WHAT IS OUR MISSION?
                 </Heading>
-                <Img src={H1} maxW={"200px"} borderRadius={"30px"}
-                margin={"10px 0px 10px 0px"}/>
-                <div className="text-content">
-                <Text color={"white"}>
 
-                <Img src={H2} maxW={"200px"} borderRadius={"30px"}
-                margin={"10px 0px 10px 0px"}/>
+                    <Text color="white" mb={2} textAlign="left" >
+                        At Cat Research, we’re here to give you the knowledge you need to give your cat the best life possible.<br />
+                        From in-depth cat product reviews. If you are a cat owner or considering becoming one,<br />
+                        you will love Cat Research. Cat Research is the place where you can get all kinds of information about cats.<br />
+                        Learn how to adopt a cat and explore the cat breeds page to find the cat that’s just right for you.<br />
+                        You will also get to know all the fun facts about cats and valuable advice from other cat owners<br />
+                        who have shared their experiences with their cats.
+                    </Text>     
+             
+                
+                <Box mt="6" display="flex" gap="20px">
+                    <Img src={H1} maxW="200px" borderRadius="30px" margin="10px 0" />
+                    <Img src={H2} maxW="200px" borderRadius="30px" margin="10px 0" />
+                </Box>
                
-                    
-
-        We love pets, and we believe loving pets makes us better people. That’s one of the many reasons we created this website. We want to offer cat owner a plate to find out more about cat and give their they a happy life. From how to take care the cat, to find out what to expect for the first time to adopt a cat, to finding the perfect treats and toys, we created a place that cat owner can share their experience and feedback.and to create more ways for pets to be a part of our everyday lives. You also will find the link that where to buy foods or toys that are from the favorites page the cat owner submitted to us.
-Qr code
-
-Please connet me on LinkedIn
-
-                </Text>
-
-                    <Text color={"white"} mt={"20px"}>
-                    On ous website you will find out more about cats information and advice for cats foods,cats toys.
-                    </Text>
-
-            </div>
-
             </Box>
 
-            <Box as="footer" className="content-wrapper text-content" padding={"20px"}>
-                <Box as={"span"} color={"white"} >© copy rights, Made by: Hong Huynh</Box>
+            <Box as="footer" className="content-wrapper text-content" padding="20px" textAlign="center">
+                <Box as="span" color="white">© Copyright, Made by: Hong Huynh</Box>
             </Box>
-      </>
-
-  )
+        </>
+    );
 }
 
-export default App
+export default App;

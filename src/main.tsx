@@ -16,7 +16,7 @@ import About from "./AboutUs.tsx";
 import Favorites from "./Favorites.tsx";
 import Advice from "./Advice.tsx";
 import Contacts from "./Contacts.tsx";
-
+import Forgot from "./Forgot.tsx"
 
 const router = createHashRouter([
   {
@@ -40,7 +40,13 @@ const router = createHashRouter([
     },{
       path: "/Contacts",
       element: <Contacts />, 
-    }]
+    },
+    {
+      path: "/forgot",
+      element: <Forgot />, 
+    }
+  
+  ]
   },
   {
     path: "/login",

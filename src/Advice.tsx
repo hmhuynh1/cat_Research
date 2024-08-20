@@ -80,7 +80,7 @@ export default function Advice() {
             backgroundSize="cover"
             backgroundPosition="center"
             backgroundRepeat="no-repeat"
-            padding="90px"
+            padding={["20px 0px 0px 0px", "90px"]}
             minHeight="90vh"
         >
             <Flex

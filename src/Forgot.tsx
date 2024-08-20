@@ -1,12 +1,10 @@
+
 import {Box, Button, FormControl, FormLabel, Heading, Input} from "@chakra-ui/react";
-import {useNavigate} from "react-router-dom";
-import catBG from "./assets/grassCat.png"
-import { useState } from "react";
 
-export default function SignUp(){
-    const [error, setError] = useState("");
 
-    const navigate = useNavigate();
+
+export default function Forgot() {
+
     const submitHandler = async (e: any)=>{
         e.preventDefault();
 
@@ -38,9 +36,6 @@ export default function SignUp(){
     }
 
 
-    const bgStyle = {
-        backgroundSize: 'cover'
-    }
 
     return <Box
     backgroundImage={catBG}
@@ -56,17 +51,12 @@ export default function SignUp(){
                         <Input name="email" type='email' />
                     </FormControl>
                     <FormControl>
-                        <FormLabel>Password</FormLabel>
-                        <Input name="password" type='password' />
-                    </FormControl><br></br>
-                    <FormLabel color="Red">{error}</FormLabel>
-                    <FormControl>
-                        <Input className="glow" type="submit" value="Login"/>
+                        <Input className="glow" type="submit" value="Forgot Paswword"/>
                     </FormControl>
-                    <Button className="glow" onClick={()=>navigate('/signup')}>Join Us</Button>
-                    <Button className="glow" onClick={()=>navigate('/forgot')}>Forgot Password</Button>
                 </form>
             </Box>
         </Box>
     </Box>
-}
+
+
+};
