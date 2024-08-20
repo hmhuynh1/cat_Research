@@ -69,7 +69,7 @@ export default function Favorites() {
                 bg="rgba(0, 0, 0, 0.5)" // Optional: semi-transparent background for readability
               >
                 <Img src={import.meta.env.VITE_SERVER_URI + "uploads/collection/" + x.picture} maxW="250px" />
-                <Text color="yellowgreen">
+                <Text color="red">
                 <Text as="strong" fontWeight={"bold"} color="black"> 
                   URL Link: 
                   </Text>
@@ -84,7 +84,7 @@ export default function Favorites() {
                 
                 <Text>
                 <Text as="strong"  fontWeight={"bold"} color="black">
-                  Food or Toy: </Text>{x.foodtoy}</Text>
+                  Food or Toy Brand: </Text>{x.foodtoy}</Text>
                 <Text>
                 <Text as="strong" fontWeight={"bold"} color="black">
                   Advices:
