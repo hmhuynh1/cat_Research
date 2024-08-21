@@ -28,7 +28,7 @@ function App() {
         >
             <Box
                 width={isMobile ? "100%" : "30%"} // Takes up half of the screen width
-                padding="20px"
+                padding="30px"
                 display="flex"
                 flexDirection="column"
                 justifyContent="center" // Center content vertically if needed
@@ -46,13 +46,12 @@ function App() {
                     The latest cat news. Learn how to adopt a cat and explore the cat breeds page to find the cat that’s just right for you.
                     Find out about the best brands of cat foods and toys that will work for your cat, and enjoy all the fun facts about cats. 
                     At cat research, you also gain valuable advice from other cat owners who have shared their experiences with their cats.
-        
                 
-                </Text><br></br><br></br><br></br><br></br>
+                </Text>
 
 
 
-                <Box as="footer" padding="20px" textAlign="center" bg="black" color="white" position="relative" zIndex="2">
+                <Box as="footer" padding="10px" textAlign="center"  color="black" position="relative" zIndex="3">
                 <Box as="span">© copyright, Made by: Hong Huynh</Box>
                 </Box>
             </Box>
