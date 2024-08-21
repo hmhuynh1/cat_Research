@@ -1,19 +1,20 @@
-import {Box, Button, FormControl, FormLabel, Heading, Input} from "@chakra-ui/react";
-import {useNavigate} from "react-router-dom";
+import { Box, Button, Divider, FormControl, FormLabel, Heading, Input } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 import catBG from "./assets/grassCat.png"
 import { useState } from "react";
+import BuildInfo from "./BuildInfo";
 
-export default function SignUp(){
+export default function SignUp() {
     const [error, setError] = useState("");
 
     const navigate = useNavigate();
-    const submitHandler = async (e: any)=>{
+    const submitHandler = async (e: any) => {
         e.preventDefault();
 
-        console.log( e.target.email.value, e.target.password.value)
+        console.log(e.target.email.value, e.target.password.value)
 
         console.log(import.meta.env)
-        const response = await fetch(import.meta.env.VITE_SERVER_URI  +"login", {
+        const response = await fetch(import.meta.env.VITE_SERVER_URI + "login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -26,13 +27,13 @@ export default function SignUp(){
         });
         const data = await response.json();
         console.log("login", data)
-        if(data.message === "login successful"){
+        if (data.message === "login successful") {
             localStorage.setItem("user", JSON.stringify(data.user));
             navigate("/");
-        }else {
+        } else {
             setError("Invalid email or passward")
         }
-        
+
         console.log(data)
 
     }
@@ -43,11 +44,11 @@ export default function SignUp(){
     }
 
     return <Box
-    backgroundImage={catBG}
-    style={bgStyle}
+        backgroundImage={catBG}
+        style={bgStyle}
 
     >
-        <Box  height={"100vh"} padding={"50px"}>
+        <Box height={"100vh"} padding={"50px"}>
             <Box maxW={"400px"} padding={"20px"} borderRadius={"20px"} backgroundColor={"#5dbab1"}>
                 <Heading>Login</Heading><br></br>
                 <form onSubmit={submitHandler} method="POST">
@@ -61,11 +62,13 @@ export default function SignUp(){
                     </FormControl><br></br>
                     <FormLabel color="Red">{error}</FormLabel>
                     <FormControl>
-                        <Input className="glow" type="submit" value="Login"/>
+                        <Input className="glow" type="submit" value="Login" />
                     </FormControl>
-                    <Button className="glow" onClick={()=>navigate('/signup')}>Join Us</Button>
-                    <Button className="glow" onClick={()=>navigate('/forgot')}>Forgot Password</Button>
+                    <Button className="glow" onClick={() => navigate('/signup')}>Join Us</Button>
+                    <Button className="glow" onClick={() => navigate('/forgot')}>Forgot Password</Button>
                 </form>
+                <Divider />
+                <BuildInfo />
             </Box>
         </Box>
     </Box>
