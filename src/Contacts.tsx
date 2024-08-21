@@ -1,6 +1,6 @@
-import { Box, Flex, Heading, FormControl, FormLabel, Input, Textarea, Button } from "@chakra-ui/react";
-import React, { FormEvent, useState } from "react";
-import catBG from "./assets/catHi.jpg"; // Ensure this path is correct
+import { Box, Flex, Heading, FormControl, FormLabel, Input, Textarea, Button } from '@chakra-ui/react';
+import React, { FormEvent, useState } from 'react';
+import catBG from './assets/catHi.jpg'; // Ensure this path is correct
 
 export default function Contacts() {
     const [form, setForm] = useState({
@@ -10,20 +10,20 @@ export default function Contacts() {
         comment: ""
     });
 
-    // Handler for input changes
-    const changeHandler = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-        setForm({
-            ...form,
-            [e.target.name]: e.target.value
-        });
-    };
+	// Handler for input changes
+	const changeHandler = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+		setForm({
+			...form,
+			[e.target.name]: e.target.value,
+		});
+	};
 
-    // Form submission handler
-    const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+	// Form submission handler
+	const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
 
         try {
-            const response = await fetch(import.meta.env.VITE_SERVER_URL  +"contacts", {
+            const response = await fetch(import.meta.env.VITE_SERVER_URI  +"contacts", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -31,25 +31,25 @@ export default function Contacts() {
                 body: JSON.stringify(form),
             });
 
-            // Check if response is ok
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
+			// Check if response is ok
+			if (!response.ok) {
+				throw new Error('Network response was not ok');
+			}
 
-            const data = await response.json();
-            console.log(data);
+			const data = await response.json();
+			console.log(data);
 
-            // Clear form on successful submission
-            setForm({
-                first: "",
-                last: "",
-                email: "",
-                comment: "",
-            });
-        } catch (error) {
-            console.error('Error submitting form:', error);
-        }
-    };
+			// Clear form on successful submission
+			setForm({
+				first: '',
+				last: '',
+				email: '',
+				comment: '',
+			});
+		} catch (error) {
+			console.error('Error submitting form:', error);
+		}
+	};
 
     return (
         <Box
@@ -57,7 +57,7 @@ export default function Contacts() {
             backgroundSize="cover"
             backgroundPosition="center"
             backgroundRepeat="no-repeat"
-            padding="40px"
+            padding={["20px", "40px"]}
             minHeight="100vh"
         >
             <Flex
@@ -95,56 +95,40 @@ export default function Contacts() {
                             />
                         </FormControl>
 
-                        <FormControl id="last-name" mb={4} isRequired>
-                            <FormLabel color="white">Last Name</FormLabel>
-                            <Input
-                                name="last"
-                                type="text"
-                                value={form.last}
-                                onChange={changeHandler}
-                                placeholder="Enter your last name"
-                                bg="white"
-                                color="black"
-                            />
-                        </FormControl>
+						<FormControl id='last-name' mb={4} isRequired>
+							<FormLabel color='white'>Last Name</FormLabel>
+							<Input name='last' type='text' value={form.last} onChange={changeHandler} placeholder='Enter your last name' bg='white' color='black' />
+						</FormControl>
 
-                        <FormControl id="email" mb={4} isRequired>
-                            <FormLabel color="white">Email</FormLabel>
-                            <Input
-                                name="email"
-                                type="email"
-                                value={form.email}
-                                onChange={changeHandler}
-                                placeholder="Enter your email"
-                                bg="white"
-                                color="black"
-                            />
-                        </FormControl>
+						<FormControl id='email' mb={4} isRequired>
+							<FormLabel color='white'>Email</FormLabel>
+							<Input name='email' type='email' value={form.email} onChange={changeHandler} placeholder='Enter your email' bg='white' color='black' />
+						</FormControl>
 
-                        <FormControl id="comment" mb={4} isRequired>
-                            <FormLabel color="white">Comment</FormLabel>
-                            <Textarea
-                                name="comment"
-                                value={form.comment}
-                                onChange={changeHandler}
-                                placeholder="Enter your comment"
-                                resize="vertical"
-                                bg="white"
-                                color="black"
-                            />
-                        </FormControl>
+						<FormControl id='comment' mb={4} isRequired>
+							<FormLabel color='white'>Comment</FormLabel>
+							<Textarea
+								name='comment'
+								value={form.comment}
+								onChange={changeHandler}
+								placeholder='Enter your comment'
+								resize='vertical'
+								bg='white'
+								color='black'
+							/>
+						</FormControl>
 
-                        <Button
-                            type="submit"
-                            colorScheme="teal"
-                            width="full"
-                            mt={4} // Margin-top for better spacing
-                        >
-                            Submit
-                        </Button>
-                    </form>
-                </Box>
-            </Flex>
-        </Box>
-    );
+						<Button
+							type='submit'
+							colorScheme='teal'
+							width='full'
+							mt={4} // Margin-top for better spacing
+						>
+							Submit
+						</Button>
+					</form>
+				</Box>
+			</Flex>
+		</Box>
+	);
 }

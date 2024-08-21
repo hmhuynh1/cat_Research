@@ -12,8 +12,10 @@ ARG NODE_VERSION=20.15
 # Use node image for base image for all stages.
 FROM node:${NODE_VERSION}-alpine as base
 
-ARG MONGO_URL_ARG
-ENV MONGO_URL=$MONGO_URL_ARG
+ARG MONGO_URL
+ENV MONGO_URL=$MONGO_URL
+ARG SERVER_URI
+ENV SERVER_URI=$SERVER_URI
 
 # Set working directory for all build stages.
 WORKDIR /app
@@ -36,34 +38,36 @@ RUN --mount=type=bind,source=package.json,target=package.json \
 # Create a stage for building the application.
 FROM deps as build
 
-ARG MONGO_URL_ARG
-ENV MONGO_URL=$MONGO_URL_ARG
+ARG MONGO_URL
+ENV MONGO_URL=$MONGO_URL
+ARG BUILD_ID
+ENV BUILD_ID=$BUILD_ID
+
 
 # Download additional development dependencies before building, as some projects require
 # "devDependencies" to be installed to build. If you don't need this, remove this step.
 RUN --mount=type=bind,source=package.json,target=package.json \
---mount=type=bind,source=package-lock.json,target=package-lock.json \
+    --mount=type=bind,source=package-lock.json,target=package-lock.json \
     --mount=type=cache,target=/root/.npm \
     npm ci
 
-    ENV  MONGO_URL=$MONGO_URL
-    
-    # Copy the rest of the source files into the image.
-    COPY . .
-    # Run the build script.
-    RUN npm run build
-    
-    ################################################################################
+
+# Copy the rest of the source files into the image.
+COPY . .
+# Run the build script.
+RUN VITE_SEVER_URI="/" BUILD_TIME=$(date) BUILD_ID=$BUILD_ID npm run build
+
+################################################################################
 # Create a new stage to run the application with minimal runtime dependencies
 # where the necessary files are copied from the build stage.
 FROM base as final
 
-ARG MONGO_URL_ARG
-ENV MONGO_URL=$MONGO_URL_ARG
+ARG MONGO_URL
+ENV MONGO_URL=$MONGO_URL
 # Use production node environment by default.
 ENV NODE_ENV production
 
-RUN npm i -g vite
+# RUN npm i -g vite
 
 # Run the application as a non-root user.
 USER node

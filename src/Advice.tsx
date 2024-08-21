@@ -6,16 +6,14 @@ export default function Advice() {
     const [form, setForm] = useState<{
         picture: File | null;
         breed: string;
-        link: string;
-        food: string;
-        toy: string;
+        foodtoy: string;
+		link: string;
         advice: string;
     }>({
         picture: null, // Add state for the file
         breed: "",
         link: "",
-        food: "",
-        toy: "",
+        foodtoy: "",
         advice: ""
     });
 
@@ -42,18 +40,19 @@ export default function Advice() {
         
         const formData = new FormData();
         formData.append("breed", form.breed);
-        formData.append("link", form.link);
-        formData.append("food", form.food);
-        formData.append("toy", form.toy);
+        formData.append("foodtoy", form.foodtoy);
+		formData.append("link", form.link);
         formData.append("advice", form.advice);
         if (form.picture) {
-            formData.append("picture", form.picture);
+            formData.append("uploaded_file", form.picture);
         }
-        console.log("check2", e.target)
+        
+        console.log("form", formData)
+        console.log("target",new FormData(e.target as any))
         try {
-            const response = await fetch("http://localhost:10000/upload-magic", {
+            const response = await fetch(import.meta.env.VITE_SERVER_URI + `upload-magic`, {
                 method: "POST",
-                body: new FormData(e.target)
+                body: formData
             });
 
             if (!response.ok) {
@@ -66,9 +65,8 @@ export default function Advice() {
             setForm({
                 picture: null,
                 breed: "",
-                link: "",
-                food: "",
-                toy: "",
+                foodtoy: "",
+				link: "",
                 advice: ""
             });
         } catch (error) {
@@ -82,8 +80,8 @@ export default function Advice() {
             backgroundSize="cover"
             backgroundPosition="center"
             backgroundRepeat="no-repeat"
-            padding="40px"
-            minHeight="80vh"
+            padding={["20px 0px 0px 0px", "90px"]}
+            minHeight="90vh"
         >
             <Flex
                 direction={["column", "column", "row"]}
@@ -101,11 +99,11 @@ export default function Advice() {
                     maxWidth="450px"
                     width="100%"
                 >
-                    <Heading textAlign="center" fontSize="30px" color="white" mb={6}>
+                    <Heading textAlign="center" fontSize="30px" color="white" mb={2}>
                         Submit Advice
                     </Heading>
                     <form onSubmit={submitHandler}>
-                        <FormControl id="picture" mb={4} isRequired>
+                        <FormControl id="picture" mb={1} isRequired>
                             <FormLabel color="white">Upload Picture:</FormLabel>
                             <Input
                                 type="file"
@@ -117,7 +115,7 @@ export default function Advice() {
                             />
                         </FormControl>
 
-                        <FormControl id="breed" mb={4} isRequired>
+                        <FormControl id="breed" mb={1} isRequired>
                             <FormLabel color="white">Cat Breed:</FormLabel>
                             <Input
                                 name="breed"
@@ -132,12 +130,12 @@ export default function Advice() {
 
                         
 
-                        <FormControl id="food" mb={4} isRequired>
-                            <FormLabel color="white">Food Brand:</FormLabel>
+                        <FormControl id="food" mb={1} isRequired>
+                            <FormLabel color="white">Food Brand & Toy Brand:</FormLabel>
                             <Input
-                                name="food"
+                                name="foodtoy"
                                 type="text"
-                                value={form.food}
+                                value={form.foodtoy}
                                 onChange={changeHandler}
                                 placeholder="Food brand"
                                 bg="white"
@@ -145,7 +143,8 @@ export default function Advice() {
                             />
                         </FormControl>
 
-                        <FormControl id="link" mb={4} isRequired>
+
+						<FormControl id="link" mb={1} isRequired>
                             <FormLabel color="white">Where to buy:</FormLabel>
                             <Input
                                 name="link"
@@ -158,21 +157,7 @@ export default function Advice() {
                             />
                         </FormControl>
 
-                        <FormControl id="toy" mb={4} isRequired>
-                            <FormLabel color="white">Toy Brand:</FormLabel>
-                            <Input
-                                name="toy"
-                                type="text"
-                                value={form.toy}
-                                onChange={changeHandler}
-                                placeholder="Toy brand"
-                                bg="white"
-                                color="black"
-                            />
-                        </FormControl>
-
-
-                        <FormControl id="advice" mb={4} isRequired>
+                        <FormControl id="advice" mb={1} isRequired>
                             <FormLabel color="white">Advice:</FormLabel>
                             <Textarea
                                 name="advice"

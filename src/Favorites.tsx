@@ -1,4 +1,4 @@
-import { Box, Flex, Text, Heading, Link } from "@chakra-ui/react";
+import { Box, Flex, Text, Heading, Link, Img } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import CA from "./assets/C-ADVICE.jpg";
 
@@ -7,13 +7,13 @@ export default function Favorites() {
 
   const getCat = async () => {
     try {
-      const response = await fetch(import.meta.env.VITE_SERVER_URI + "cat");
+      const response = await fetch(import.meta.env.VITE_SERVER_URI + "cat-feed");
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
       const d = await response.json();
       console.log("check", d);
-      setData(d);
+      setData(d.data);
     } catch (error) {
       console.error('Fetch error:', error);
     }
@@ -23,6 +23,8 @@ export default function Favorites() {
     getCat();
   }, []);
 
+
+  console.log("data", data)
   return (
     <Box
       minHeight="105vh"
@@ -30,12 +32,12 @@ export default function Favorites() {
       backgroundSize="cover"
       backgroundPosition="center"
       padding={"20px"}
-      color="black" // Ensure text is visible over background
+      color="white" // Ensure text is visible over background
     >
-      <Heading mb="4">Helpful Advices</Heading>
+      <Heading  color="black" mb="4" >Helpful Advices</Heading>
       <section>
-        <div id="center">
-          <section id="search-form-section" className="d-flex flex-column gap-4">
+        <Box  id="center" display={["none", "block"]}>
+          {/* <section id="search-form-section" className="d-flex flex-column gap-2">
             <form method="get" className="d-flex flex-column gap-4">
               <input
                 type="search"
@@ -53,8 +55,8 @@ export default function Favorites() {
                 </button>
               </div>
             </form>
-          </section>
-        </div>
+          </section> */}
+        </Box>
 
         <section className="mt-4">
           <Flex gap={"20px"} wrap="wrap">
@@ -66,12 +68,27 @@ export default function Favorites() {
                 padding={"20px"}
                 bg="rgba(0, 0, 0, 0.5)" // Optional: semi-transparent background for readability
               >
-                <Text color="yellowgreen">
+                <Img src={import.meta.env.VITE_SERVER_URI + "uploads/collection/" + x.picture} maxW="250px" />
+                <Text color="red">
+                <Text as="strong" fontWeight={"bold"} color="black"> 
+                  URL Link: 
+                  </Text>
+                  
+                  
+                  
+                  
                   <Link href={x.link}>{x.link}</Link>
                 </Text>
-                <Text>{x.food}</Text>
-                <Text>{x.toy}</Text>
-                <Text>{x.advice}</Text>
+                <Text>
+                  <Text as="strong" fontWeight={"bold"} color="black">Cat Breed:</Text> {x.breed}</Text>
+                
+                <Text>
+                <Text as="strong"  fontWeight={"bold"} color="black">
+                  Food or Toy Brand: </Text>{x.foodtoy}</Text>
+                <Text>
+                <Text as="strong" fontWeight={"bold"} color="black">
+                  Advices:
+                  </Text> {x.advice}</Text>
               </Box>
             ))}
           </Flex>

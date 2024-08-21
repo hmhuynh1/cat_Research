@@ -3,8 +3,7 @@ const express = require('express');
 const multer = require('multer');
 const path = require('path');
 const app = express();
-const port = process.env.PORT ?? 3000;
-console.log(process.env.NICK)
+const port = process.env.SERVER_PORT ?? 3000;
 const mongoose = require("mongoose");
 const User = require("./models/userSchema.cjs")
 const Cat = require("./models/catSchema.cjs")
@@ -12,9 +11,10 @@ const Contacts = require("./models/contactsSchema.cjs")
 const cors = require("cors")
 
 
-const { imageStorage, certificateStorage } = require("./middleware/storage.cjs");
+const { imageStorage } = require("./middleware/storage.cjs");
 const imageUpload = multer({ storage: imageStorage });
 
+const fs = require("fs");
 
 app.use(cors())
 
@@ -97,29 +97,6 @@ app.post("/login", async (req, res) => {
 
 
 
-app.delete('/todo/:id', async (req, res) => {
-
-    const result = await Todo.findByIdAndDelete(req.params.id);
-    res.json(result);
-})
-
-app.put("/todo/:id", async (req, res) => {
-    var query = { '_id': req.params.id };
-    const update = {
-        ...req.body
-    };
-
-    let results = await Todo.findOneAndUpdate(query, update, { upsert: true });
-    results = await Todo.findOne(query);
-
-    res.json({
-        success: true,
-        data: results,
-    });
-
-})
-
-
 app.use('/uploads', express.static('uploads'));
 
 
@@ -179,8 +156,18 @@ app.post(
         console.log("file proccessed:", req.file);
         newPath = req.file.path.substring(req.file.path.indexOf("/") + 1);
   
+
+        const result = await Cat.create({
+            picture: req.file.filename,
+            breed: req.body.breed,
+            link: req.body.link,
+            foodtoy: req.body.foodtoy,
+            advice: req.body.advice,
+        })
+
         res.json({
           message: "Image Upload Success",
+          result: result,
           image: req.file.filename,
         });
       } else {
@@ -191,6 +178,22 @@ app.post(
     }
   );
   
+
+app.get("/cat-feed", async (req, res) => {
+
+    const result = await Cat.find();
+
+
+    res.json({
+        data: result
+    })
+  
+
+
+})
+
+app.use(express.static('uploads/collection/'))
+//http://localhost:10000/uploads/collection/_image.png
 
 const listener = app.listen(port, () => {
     console.log('Server started at http://localhost:' + listener.address().port);

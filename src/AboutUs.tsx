@@ -1,52 +1,94 @@
-import './App.css'
-import {Box, Heading, Img, Text} from "@chakra-ui/react";
-import H1 from "./assets/H1.jpeg"
+import { Box, Heading, Img, Text } from "@chakra-ui/react";
+import catB from "./assets/aboutus.png"; 
+import H1 from "./assets/H1.jpeg";
+import H2 from "./assets/g1.jpg";
+
 import { useNavigate } from 'react-router-dom';
-import  { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+
+
 function App() {
     const navigate = useNavigate();
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);/** */
 
     useEffect(() => {
         if (!localStorage.getItem("user")) {
             navigate("/login");
         }
-        
-    }, []);
+    }, [navigate]);
 
-  return (
-      <>
-          
-            <Box as={"main"} padding={"20px"} className="content-wrapper2 text-and-image">
-                <Heading color={"white"}>
-                    About Us
+    useEffect(() => {/** */
+        window.addEventListener('resize', () => {
+            setIsMobile(window.innerWidth < 768);
+        });
+    })
+
+    return (
+        <Box
+            position="relative"
+            minHeight="100vh"
+            display="flex"
+        >
+            <Box
+                width={isMobile ? "100%" : "30%"} // Takes up half of the screen width
+                padding="20px"
+                display="flex"
+                flexDirection="column"
+                justifyContent="center" // Center content vertically if needed
+                alignItems="flex-start" // Align content to the left
+                bg="rgba(255, 255, 255, 0.8)" // Optional: Add background color to improve text readability
+                minHeight="60vh"
+                position="relative" // Ensure text container is positioned correctly
+                zIndex="1" // Ensure text is above the background image
+            >
+                <Heading color="black" mb={2} textAlign="left">
+                         WHAT IS OUR MISSION?
+ 
                 </Heading>
-                <Img src={H1} maxW={"200px"} borderRadius={"30px"}
-                margin={"10px 0px 10px 0px"}/>
-                <div className="text-content">
-                <Text color={"white"}>
-                    
+                <Text color="#1b802c" mb={5} textAlign="left">
+                        At Cat Research, we’re here to give you the knowledge you need to give your cat the best life possible.<br />
+                        From in-depth cat product reviews. If you are a cat owner or considering becoming one,<br />
+                        you will love Cat Research. Cat Research is the place where you can get all kinds of information about cats.<br />
+                        Learn how to adopt a cat and explore the cat breeds page to find the cat that’s just right for you.<br />
+                        You will also get to know all the fun facts about cats and valuable advice from other cat owners<br />
+                        who have shared their experiences with their cats.
 
-        We love pets, and we believe loving pets makes us better people. That’s one of the many reasons we created this website. We want to offer cat owner a plate to find out more about cat and give their they a happy life. From how to take care the cat, to find out what to expect for the first time to adopt a cat, to finding the perfect treats and toys, we created a place that cat owner can share their experience and feedback.and to create more ways for pets to be a part of our everyday lives. You also will find the link that where to buy foods or toys that are from the favorites page the cat owner submitted to us.
-Qr code
+                
+                
+                </Text><br></br><br></br><br></br><br></br>
 
-Please connet me on LinkedIn
+                <Box mt="6" display="flex" gap="20px">
+                    <Img src={H1} maxW="200px" borderRadius="30px" margin="10px 0" />
+                    <Img src={H2} maxW="200px" borderRadius="30px" margin="10px 0" />
+                </Box>
+               
+            
 
-                </Text>
 
-                    <Text color={"white"} mt={"20px"}>
-                    On ous website you will find out more about cats information and advice for cats foods,cats toys.
-                    </Text>
 
-            </div>
 
+                <Box as="footer" padding="20px" textAlign="center" bg="black" color="white" position="relative" zIndex="2">
+                <Box as="span">© copyright, Made by: Hong Huynh</Box>
+                </Box>
             </Box>
+            
+            
+            <Box
+                position="absolute"
+                top="0"
+                left="0"
+                width="100%"
+                height="100%"
+                backgroundImage={`url(${catB})`}
+                backgroundSize="cover"
+                backgroundPosition="center"
+                backgroundRepeat="no-repeat"
+                zIndex="0" // Ensure background image is below the text container
+            />
 
-            <Box as="footer" className="content-wrapper text-content" padding={"20px"}>
-                <Box as={"span"} color={"white"} >© copy rights, Made by: Hong Huynh</Box>
-            </Box>
-      </>
-
-  )
+           
+        </Box>
+    );
 }
 
-export default App
+export default App;

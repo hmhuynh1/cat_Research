@@ -64,6 +64,7 @@ export default function SignUp(){
                         <Input className="glow" type="submit" value="Login"/>
                     </FormControl>
                     <Button className="glow" onClick={()=>navigate('/signup')}>Join Us</Button>
+                    <Button className="glow" onClick={()=>navigate('/forgot')}>Forgot Password</Button>
                 </form>
             </Box>
         </Box>
