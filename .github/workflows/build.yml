@@ -39,12 +39,12 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_3BCEBDBD82E14B4E8219A101BB954F99 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_7F4C8FC468CE4BB1BBB15E8C0F24CD2F }}
 
-      - name: 'Deploy to Azure Web App'
-        id: deploy-to-webapp
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: 'cat-research-dc'
-          images: hongmhuynh1/cat-research:${{steps.short-sha.outputs.sha}}
+      # - name: 'Deploy to Azure Web App'
+      #   id: deploy-to-webapp
+      #   uses: azure/webapps-deploy@v2
+      #   with:
+      #     app-name: 'cat-research-dc'
+      #     images: hongmhuynh1/cat-research:${{steps.short-sha.outputs.sha}}
           # slot-name: 'Production'
           
           
