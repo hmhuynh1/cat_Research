@@ -1,5 +1,8 @@
 {
   "files": [],
+  "compilerOptions": {
+    "types": ["browser","node"],
+  },
   "references": [
     {
       "path": "./tsconfig.app.json"

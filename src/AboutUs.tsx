@@ -45,7 +45,7 @@ function App() {
                          WHAT IS OUR MISSION?
  
                 </Heading>
-                <Text color="#1b802c" mb={5} textAlign="left">
+                <Text color="black" mb={2} textAlign="left">
                         At Cat Research, we’re here to give you the knowledge you need to give your cat the best life possible.<br />
                         From in-depth cat product reviews. If you are a cat owner or considering becoming one,<br />
                         you will love Cat Research. Cat Research is the place where you can get all kinds of information about cats.<br />

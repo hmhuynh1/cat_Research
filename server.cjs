@@ -9,12 +9,16 @@ const User = require("./models/userSchema.cjs")
 const Cat = require("./models/catSchema.cjs")
 const Contacts = require("./models/contactsSchema.cjs")
 const cors = require("cors")
-
+const bcrypt = require('bcrypt')
+const nodemailer = require('nodemailer')
+const jwt = require('jsonwebtoken')
 
 const { imageStorage } = require("./middleware/storage.cjs");
 const imageUpload = multer({ storage: imageStorage });
 
 const fs = require("fs");
+const { errorMiddleware } = require('error-middleware/middlewares');
+const  BlacklistedToken = require('./models/blacklistedToken.cjs');
 
 app.use(cors())
 
@@ -35,17 +39,19 @@ const storage = multer.diskStorage({
 })
 
 async function main() {
-    await mongoose.connect(process.env.MONGO_URL);
-    console.log('start of main')
+    await mongoose.connect(process.env.MONGO_URL, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    }).then(() => console.log('mongo db connection established'));
 }
 
-
+const SALT_ROUNDS=10;
 
 app.post('/signup', async (req, res) => {
 
     const result = await User.create({
         email: req.body.email,
-        password: req.body.password
+        password: bcrypt.hashSync(req.body.password,SALT_ROUNDS)
     })
     console.log("signup:", result)
     res.json({
@@ -72,7 +78,7 @@ app.post("/login", async (req, res) => {
         if (user) {
             //check password
             console.log(user.password, req.body.password);
-            if (user.password === req.body.password) {
+            if (bcrypt.compare(req.body.password, user.password)) {
                 res.json({
                     message: "login successful",
                     user: {
@@ -94,6 +100,90 @@ app.post("/login", async (req, res) => {
         });
     }
 });
+
+
+const JWT_SECRET = 'your_jwt_secret'; // Replace with a secure secret key
+
+
+// Set up email transporter (using SMTP here, configure as needed)
+const transporter = nodemailer.createTransport({
+    host: "sandbox.smtp.mailtrap.io",
+    port: 2525,
+  auth: {
+    user: process.env.MAILTRAP_USER,
+    pass: process.env.MAILTRAP_PASSWORD
+  }
+});
+
+// Endpoint to request a password reset
+app.post('/forgot-password', async (req, res) => {
+  const { email } = req.body;
+  try {
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Generate JWT token
+    const token = jwt.sign({ email: user.email }, JWT_SECRET, { expiresIn: '5m' });
+
+
+    // Send email with the reset link
+    const resetLink = process.env.VITE_SERVER_URI.replace('$SERVER_PORT',process.env.SERVER_PORT)+`#/forgot?token=${token}`;
+
+    await transporter.sendMail({
+      to: email,
+      subject: 'Password Reset',
+      text: `Click the following link to reset your password: ${resetLink}`
+    });
+
+    res.status(200).json({ message: 'Password reset email sent' });
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: 'Server error', error });
+  }
+});
+
+// Endpoint to reset the password
+app.post('/reset-password', async (req, res) => {
+  const { token, newPassword } = req.body;
+
+  try {
+    // Check if token is blacklisted
+    const blacklistedToken = await BlacklistedToken.findOne({ token,used:true });
+    console.log({blacklistedToken})
+    //check if the token has expired
+    if (blacklistedToken) {
+      return res.status(400).json({ message: 'Token is invalid or expired' });
+    }
+
+    // Verify the token
+    const decoded = jwt.verify(token, JWT_SECRET);
+    const email = decoded.email;
+
+    // Find user and update password
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    console.log('found user')
+    // Hash the new password
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    user.password = hashedPassword;
+    await user.save();
+    
+    console.log('found user:updated')
+    console.log('found user')
+    // Blacklist the token after successful use
+    await BlacklistedToken.create({ token });
+
+    res.status(200).json({ message: 'Password reset successful' });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error });
+  }
+});
+
 
 
 
@@ -119,12 +209,12 @@ app.post('/cat', upload.single('picture'), async (req, res) => {
         advice: req.body.adcice,
     })
 
-    res.json({message: "success"});
+    res.json({ message: "success" });
 })
 
 app.get('/cat', async (req, res) => {
     const result = await Cat.find();
-    console.log("?",result)
+    console.log("?", result)
     res.json(
         result
     )
@@ -148,36 +238,36 @@ app.post(
     async (req, res) => {
 
         console.log("upload!!")
-    
-      let newPath = null;
+
+        let newPath = null;
         console.log("catch", req.file)
-      if (req.file !== undefined) {
-        //success
-        console.log("file proccessed:", req.file);
-        newPath = req.file.path.substring(req.file.path.indexOf("/") + 1);
-  
+        if (req.file !== undefined) {
+            //success
+            console.log("file proccessed:", req.file);
+            newPath = req.file.path.substring(req.file.path.indexOf("/") + 1);
 
-        const result = await Cat.create({
-            picture: req.file.filename,
-            breed: req.body.breed,
-            link: req.body.link,
-            foodtoy: req.body.foodtoy,
-            advice: req.body.advice,
-        })
 
-        res.json({
-          message: "Image Upload Success",
-          result: result,
-          image: req.file.filename,
-        });
-      } else {
-        res.json({
-          message: "Image Upload Failed",
-        });
-      }
+            const result = await Cat.create({
+                picture: req.file.filename,
+                breed: req.body.breed,
+                link: req.body.link,
+                foodtoy: req.body.foodtoy,
+                advice: req.body.advice,
+            })
+
+            res.json({
+                message: "Image Upload Success",
+                result: result,
+                image: req.file.filename,
+            });
+        } else {
+            res.json({
+                message: "Image Upload Failed",
+            });
+        }
     }
-  );
-  
+);
+
 
 app.get("/cat-feed", async (req, res) => {
 
@@ -187,7 +277,7 @@ app.get("/cat-feed", async (req, res) => {
     res.json({
         data: result
     })
-  
+
 
 
 })
@@ -195,6 +285,18 @@ app.get("/cat-feed", async (req, res) => {
 app.use(express.static('uploads/collection/'))
 //http://localhost:10000/uploads/collection/_image.png
 
-const listener = app.listen(port, () => {
-    console.log('Server started at http://localhost:' + listener.address().port);
-})
+app.use(errorMiddleware)
+
+
+mongoose.connect(process.env.MONGO_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,  
+  })
+  
+  .then(() => {
+        console.log('Connected to MongoDB');
+    const listener=app.listen(port, () => {
+        console.log('Server started at http://localhost:' + listener.address().port);
+    })
+
+});

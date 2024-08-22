@@ -1,29 +1,29 @@
-import { useEffect, useState } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
 import { Box, Button, Link } from "@chakra-ui/react";
-import BuildInfo from './BuildInfo';
+import BuildInfo from "./BuildInfo";
+
+const lsUserJson = localStorage.getItem("user") || "null";
+const parseUser = JSON.parse(lsUserJson);
 
 export default function Layout() {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const [user, setUser] = useState({});
     const [showMobileNav, setShowMobileNav] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
     useEffect(() => {
-        let parseUser = localStorage.getItem("user") || "";
-        parseUser = JSON.parse(parseUser);
-        console.log("parse user", parseUser)
+        console.log("parse user", parseUser);
         if (parseUser != "") {
-            setUser(parseUser)
+            setUser(parseUser);
         } else {
-            navigate("/login")
+            navigate("/login");
         }
 
-        window.addEventListener('resize', () => {
+        window.addEventListener("resize", () => {
             setIsMobile(window.innerWidth < 768);
         });
     }, []);
-
 
     const buttonStyle = {
         backgroundColor: "",
@@ -33,63 +33,89 @@ export default function Layout() {
         fontWeight: 800,
         fontSize: 20,
         color: " #413d3c "
-
-    }
+    };
 
     const mobileButtonStyle = {
-        //backgroundColor: "", 
+        //backgroundColor: "",
         padding: "10px",
-        fontWeight: 600,
-    }
+        fontWeight: 600
+    };
 
     return (
         <Box as={"main"} backgroundColor={"rgb(108, 117, 125)"}>
-            <Box as={"nav"} display={"flex"} justifyContent={"center"} alignItems={"center"}
+            <Box
+                as={"nav"}
+                display={"flex"}
+                justifyContent={"center"}
+                alignItems={"center"}
                 backgroundColor={"#5dbab1"}
                 padding={"12px 0px"}
                 boxShadow={"0 2px 2px rgb(52 172 145 / 80%)"}
                 gap={"20px"}
             >
                 {/* DESKTOP NAV BAR */}
-                {isMobile != true &&
-
+                {isMobile != true && (
                     <Box display={"flex"} gap={"40px"}>
-                        <Link {...buttonStyle} href="/">Home</Link>
-                        <Link {...buttonStyle} href="/#/gallery">Cat Breeds</Link>
-                        <Link {...buttonStyle} href="/#/advice">Submit Advice</Link>
-                        <Link {...buttonStyle} href="/#/favorites">Helpful Advice</Link>
-                        <Link {...buttonStyle} href="/#/contacts">Contacts</Link>
-                        <Link {...buttonStyle} href="/#/about">About Us</Link>
-                        <Button className="g-button" onClick={() => {
-                            localStorage.removeItem("user");
-                            navigate('/login')
-                        }}>Logout</Button>
+                        <Link {...buttonStyle} href="/">
+                            Home
+                        </Link>
+                        <Link {...buttonStyle} href="/#/gallery">
+                            Cat Breeds
+                        </Link>
+                        <Link {...buttonStyle} href="/#/advice">
+                            Submit Advice
+                        </Link>
+                        <Link {...buttonStyle} href="/#/favorites">
+                            Helpful Advice
+                        </Link>
+                        <Link {...buttonStyle} href="/#/contacts">
+                            Contacts
+                        </Link>
+                        <Link {...buttonStyle} href="/#/about">
+                            About Us
+                        </Link>
+                        {user ? (
+                            <Button
+                                className="g-button"
+                                onClick={() => {
+                                    localStorage.removeItem("user");
+                                    navigate("/login");
+                                }}
+                            >
+                                Logout
+                            </Button>
+                        ) : (
+                            <></>
+                        )}
                     </Box>
-                }
+                )}
 
                 {/* Mobile Nav Bar */}
-                {isMobile &&
-                    <Box width="95%" display={"flex"} justifyContent={"flex-end"}>
-                        <Button onClick={() => {
-                            if (showMobileNav)
-                                setShowMobileNav(false);
-                            else
-                                setShowMobileNav(true);
-                            console.log("showMobileNav", showMobileNav)
-                        }}>Menu</Button>
+                {isMobile && (
+                    <Box
+                        width="95%"
+                        display={"flex"}
+                        justifyContent={"flex-end"}
+                    >
+                        <Button
+                            onClick={() => {
+                                if (showMobileNav) setShowMobileNav(false);
+                                else setShowMobileNav(true);
+                                console.log("showMobileNav", showMobileNav);
+                            }}
+                        >
+                            Menu
+                        </Button>
                     </Box>
-                }
-
-
+                )}
             </Box>
             <Outlet context={[user, setUser]} />
 
-          <BuildInfo />
+            <BuildInfo />
 
             {/* DISPLAY MOBILE NAV */}
-            {isMobile && showMobileNav &&
+            {isMobile && showMobileNav && (
                 <Box
-
                     position={"fixed"}
                     zIndex={10}
                     display={"flex"}
@@ -103,28 +129,46 @@ export default function Layout() {
                     boxShadow="2px 0 5px rgba(0,0,0,0.5)"
                     padding="1rem"
                 >
-                    <Button onClick={() => {
-                        setShowMobileNav(false);
-                        console.log("showMobileNav", showMobileNav)
-                    }}>Close</Button>
+                    <Button
+                        onClick={() => {
+                            setShowMobileNav(false);
+                            console.log("showMobileNav", showMobileNav);
+                        }}
+                    >
+                        Close
+                    </Button>
 
-
-                    <Link {...mobileButtonStyle} href="/">Home</Link>
-                    <Link {...mobileButtonStyle} href="/#/gallery">Cat Breeds</Link>
-                    <Link {...mobileButtonStyle} href="/#/advice">Submit Advices</Link>
-                    <Link {...mobileButtonStyle} href="/#/favorites">Helpful Advices</Link>
-                    <Link {...mobileButtonStyle} href="/#/contacts">Contacts</Link>
-                    <Link {...mobileButtonStyle} href="/#/about">About Us</Link>
-                    <Button className="g-button" width={"24"} margin={0} onClick={() => {
-                        localStorage.removeItem("user");
-                        navigate('/login')
-                    }}>Log Out</Button>
+                    <Link {...mobileButtonStyle} href="/">
+                        Home
+                    </Link>
+                    <Link {...mobileButtonStyle} href="/#/gallery">
+                        Cat Breeds
+                    </Link>
+                    <Link {...mobileButtonStyle} href="/#/advice">
+                        Submit Advices
+                    </Link>
+                    <Link {...mobileButtonStyle} href="/#/favorites">
+                        Helpful Advices
+                    </Link>
+                    <Link {...mobileButtonStyle} href="/#/contacts">
+                        Contacts
+                    </Link>
+                    <Link {...mobileButtonStyle} href="/#/about">
+                        About Us
+                    </Link>
+                    <Button
+                        className="g-button"
+                        width={"24"}
+                        margin={0}
+                        onClick={() => {
+                            localStorage.removeItem("user");
+                            navigate("/login");
+                        }}
+                    >
+                        Log Out
+                    </Button>
                 </Box>
-            }
-
+            )}
         </Box>
     );
 }
-
-
-
