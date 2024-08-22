@@ -4,6 +4,8 @@ services:
     environment:
       NODE_ENV: production
       SERVER_URL: "/"
+      MAILTRAP_USER=REPLACE_WITH_VALUE_FROM_MAIL
+      MAILTRAP_PASSWORD=REPLACE_WITH_VALUE_FROM_MAIL
     ports:
         - 3000:3000
         - 3001:3001
