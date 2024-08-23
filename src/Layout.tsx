@@ -42,7 +42,7 @@ export default function Layout() {
             >
                 {/* Logo */}
                 <Box position="absolute" left="20px" top="50%" transform="translateY(-50%)">
-                    <Image src={logo} alt="Logo" boxSize="110px" objectFit="contain" borderRadius="50px"/>
+                    <Image src={logo} alt="Logo" boxSize="100px" objectFit="contain" borderRadius="35px"/>
                 </Box>
 
                 {/* DESKTOP NAV BAR */}
@@ -57,43 +57,43 @@ export default function Layout() {
                         <>
                             <NavLink to="/" style={({ isActive }) => ({
                                 fontWeight: isActive ? 'bold' : 'normal',
-                                fontSize: "20px",
-                                color: "#413d3c"
+                                fontSize: "25px",
+                                color: "#090a09"
                             })}>
                                 Home
                             </NavLink>
                             <NavLink to="/gallery" style={({ isActive }) => ({
                                 fontWeight: isActive ? 'bold' : 'normal',
-                                fontSize: "20px",
-                                color: "#413d3c"
+                                fontSize: "25px",
+                                color: "#090a09"
                             })}>
                                 Cat Breeds
                             </NavLink>
                             <NavLink to="/advice" style={({ isActive }) => ({
                                 fontWeight: isActive ? 'bold' : 'normal',
                                 fontSize: "20px",
-                                color: "#413d3c"
+                                color: "#090a09"
                             })}>
-                                Submit Advice
+                                Advice
                             </NavLink>
                             <NavLink to="/favorites" style={({ isActive }) => ({
                                 fontWeight: isActive ? 'bold' : 'normal',
-                                fontSize: "20px",
-                                color: "#413d3c"
+                                fontSize: "25px",
+                                color: "#090a09"
                             })}>
                                 Helpful Advice
                             </NavLink>
                             <NavLink to="/contacts" style={({ isActive }) => ({
                                 fontWeight: isActive ? 'bold' : 'normal',
-                                fontSize: "20px",
-                                color: "#413d3c"
+                                fontSize: "25px",
+                                color: "#090a09"
                             })}>
                                 Contacts
                             </NavLink>
                             <NavLink to="/about" style={({ isActive }) => ({
                                 fontWeight: isActive ? 'bold' : 'normal',
-                                fontSize: "20px",
-                                color: "#413d3c"
+                                fontSize: "25px",
+                                color: "#090a09"
                             })}>
                                 About Us
                             </NavLink>
@@ -139,6 +139,9 @@ export default function Layout() {
                     <NavLink to="/" style={{ fontWeight: 600, fontSize: "16px", color: "#413d3c" }}>
                         Home
                     </NavLink>
+                    <NavLink to="/about" style={{ fontWeight: 600, fontSize: "16px", color: "#413d3c" }}>
+                        About Us
+                    </NavLink>
                     <NavLink to="/gallery" style={{ fontWeight: 600, fontSize: "16px", color: "#413d3c" }}>
                         Cat Breeds
                     </NavLink>
@@ -151,9 +154,7 @@ export default function Layout() {
                     <NavLink to="/contacts" style={{ fontWeight: 600, fontSize: "16px", color: "#413d3c" }}>
                         Contacts
                     </NavLink>
-                    <NavLink to="/about" style={{ fontWeight: 600, fontSize: "16px", color: "#413d3c" }}>
-                        About Us
-                    </NavLink>
+                   
                     {user && (
                         <Button width="100%" onClick={handleLogout}>
                             Log Out

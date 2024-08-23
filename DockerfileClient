@@ -1,6 +1,6 @@
 From node:20.15-alpine
 
-workdir /app
+worker /app
 
 copy package.* .
 run npm i --force
