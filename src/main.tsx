@@ -29,7 +29,7 @@ const router = createHashRouter([
       path: "/gallery",
       element: <Gallery />,
     },{
-      path: "/about",
+      path: "/aboutus",
       element: <About />,
     },{
       path: "/favorites",

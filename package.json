@@ -9,7 +9,8 @@
 		"dev": "npx concurrently \"npm run dev:client\" \"npm run dev:server\"",
 		"WARNING":"DO NOT EDIT build command, leave as is",
 		"build": "npx cross-env VITE_SERVER_URI=\"/\" tsc -b && npx cross-env VITE_SERVER_URI=\"/\" vite build",
-		"start": "serve dist",
+		"start": "PORT=3000 node server.cjs",
+		"start:docker": ". init.sh",
 		"lint": "eslint . --ext ts,tsx --fix",
 		"preview": "vite preview"
 	},

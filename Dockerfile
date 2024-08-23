@@ -67,6 +67,18 @@ ENV MONGO_URL=$MONGO_URL
 # Use production node environment by default.
 ENV NODE_ENV production
 
+
+COPY init.sh ./
+
+# Start and enable SSH
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends dialog \
+    && apt-get install -y --no-install-recommends openssh-server \
+    && echo "root:Docker!" | chpasswd \
+    && chmod u+x ./init.sh
+COPY sshd_config /etc/ssh/
+
+
 # RUN npm i -g vite
 
 # Run the application as a non-root user.
@@ -85,19 +97,14 @@ COPY --from=build /app/dist ./dist
 
 # Expose the port that the application listens on.
 COPY . .
-EXPOSE 3000
+
+EXPOSE 3000 2222
 
 
-# CMD ['npm', 'run', 'dev']
-
-# Run the application.
-
-# CMD npm start
 
 # Set the working directory in the container
 WORKDIR /app
 
+
 # Start the app
-# CMD [ "node","server.cjs" ]
-# CMD [ "sh","-c","npm run dev & PORT=3000 node server.cjs" ]
-CMD [ "sh","-c","PORT=3000 node server.cjs"]
+CMD [ "sh","-c","npm run start:docker"]
