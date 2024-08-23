@@ -23,6 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 .env
-
+**/uploads/
 prod.compose.yml
 mongo_data
