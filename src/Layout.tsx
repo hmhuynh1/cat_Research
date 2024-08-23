@@ -60,43 +60,41 @@ export default function Layout() {
                                 fontSize: "25px",
                                 color: "#090a09"
                             })}>
-                                Home
+                                HOME
                             </NavLink>
+
                             <NavLink to="/gallery" style={({ isActive }) => ({
                                 fontWeight: isActive ? 'bold' : 'normal',
                                 fontSize: "25px",
                                 color: "#090a09"
                             })}>
-                                Cat Breeds
+                                CAT BREEDS
                             </NavLink>
+
                             <NavLink to="/advice" style={({ isActive }) => ({
                                 fontWeight: isActive ? 'bold' : 'normal',
-                                fontSize: "20px",
+                                fontSize: "25px",
                                 color: "#090a09"
                             })}>
-                                Advice
+                                ADVICE
                             </NavLink>
+
                             <NavLink to="/favorites" style={({ isActive }) => ({
                                 fontWeight: isActive ? 'bold' : 'normal',
                                 fontSize: "25px",
                                 color: "#090a09"
                             })}>
-                                Helpful Advice
+                                HELPFUL ADVICE
                             </NavLink>
+
                             <NavLink to="/contacts" style={({ isActive }) => ({
                                 fontWeight: isActive ? 'bold' : 'normal',
                                 fontSize: "25px",
                                 color: "#090a09"
                             })}>
-                                Contacts
+                                CONTACT 
                             </NavLink>
-                            <NavLink to="/about" style={({ isActive }) => ({
-                                fontWeight: isActive ? 'bold' : 'normal',
-                                fontSize: "25px",
-                                color: "#090a09"
-                            })}>
-                                About Us
-                            </NavLink>
+                            
                             {user && (
                                 <Button onClick={handleLogout}>
                                     Logout
