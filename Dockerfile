@@ -72,11 +72,23 @@ COPY init.sh ./
 
 # Start and enable SSH
 RUN apk update \
-    && apk add -f -l dialog \
-    && apk add -f -l openssh-server \
+    && apk add  --no-cache -f -l dialog \
+    && apk add  --no-cache -f -l openssh-server \
+    && apk add --no-cache -f -l openrc \
     && echo "root:Docker!" | chpasswd \
     && chmod u+x ./init.sh
+
+    # Set up SSH
+RUN mkdir /var/run/sshd
 COPY sshd_config /etc/ssh/
+
+# Configure SSH
+RUN echo "root:rootpassword" | chpasswd
+RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+
+# Add OpenRC service script for SSH
+RUN rc-update add sshd
+
 
 
 # RUN npm i -g vite
