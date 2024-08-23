@@ -32,12 +32,12 @@ jobs:
           build-args: BUILD_ID=${{env.SHA}}
           tags: hongmhuynh1/cat-research:latest,hongmhuynh1/cat-research:${{steps.short-sha.outputs.sha}}
 
-      - name: Login to Azure
-        uses: azure/login@v2
-        with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_4836816708FF40108C2B80B10F22C9BF }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_3BCEBDBD82E14B4E8219A101BB954F99 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_7F4C8FC468CE4BB1BBB15E8C0F24CD2F }}
+      # - name: Login to Azure
+      #   uses: azure/login@v2
+      #   with:
+      #     client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_4836816708FF40108C2B80B10F22C9BF }}
+      #     tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_3BCEBDBD82E14B4E8219A101BB954F99 }}
+      #     subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_7F4C8FC468CE4BB1BBB15E8C0F24CD2F }}
 
       # - name: 'Deploy to Azure Web App'
       #   id: deploy-to-webapp
