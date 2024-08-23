@@ -48,7 +48,7 @@ export default function Advice() {
         }
         
         console.log("form", formData)
-        console.log("target",new FormData(e.target as any))
+        console.log("target",new FormData(e.target as never))
         try {
             const response = await fetch(import.meta.env.VITE_SERVER_URI + `upload-magic`, {
                 method: "POST",
