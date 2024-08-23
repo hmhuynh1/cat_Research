@@ -73,7 +73,6 @@ export default function Advice() {
             console.error('Error submitting form:', error);
         }
     };
-
     return (
         <Box
             backgroundImage={`url(${catBG})`}
