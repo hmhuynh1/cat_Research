@@ -7,7 +7,7 @@
 		"dev:server": "npx nodemon -x \"node server.cjs\"",
 		"dev:client": "npx cross-env VITE_SERVER_URI=\"http://localhost:3001/\" vite --host 0.0.0.0",
 		"dev": "npx concurrently \"npm run dev:client\" \"npm run dev:server\"",
-		"WARNING":"DO NOT EDIT build command, leave as is",
+		"WARNING": "DO NOT EDIT build command, leave as is",
 		"build": "npx cross-env VITE_SERVER_URI=\"/\" tsc -b && npx cross-env VITE_SERVER_URI=\"/\" vite build",
 		"start": "PORT=3000 node server.cjs",
 		"start:docker": ". init.sh",

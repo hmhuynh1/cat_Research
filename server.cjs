@@ -199,9 +199,9 @@ app.use('/uploads', express.static('uploads'));
 const upload = multer({ storage });
 app.post('/cat', upload.single('picture'), async (req, res) => {
     console.log(req.body)
-    console.log("file", req.file);
+   // console.log("file", req.file);
     const rusult = await Cat.create({
-        picture: req.file,
+       // picture: req.file,
         breed: req.body.breed,
         link: req.body.link,
         food: req.body.food,
