@@ -1,81 +1,186 @@
-import { Box, Heading, Text } from "@chakra-ui/react";
-import catB from "./assets/h1.jpg"; // Ensure this path is correct
-import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { Box, Flex, Heading, FormControl, FormLabel, Input, Textarea, Button } from "@chakra-ui/react";
+import React, { FormEvent, useState } from "react";
+import catBG from "./assets/advice.png"; // Ensure this path is correct
 
-
-function App() {
-    const navigate = useNavigate();
-    const [isMobile, setIsMobile] = useState(window.innerWidth < 768); /** */
-
-    useEffect(() => {
-        if (!localStorage.getItem("user")) {
-            navigate("/login");
-        }
-    }, [navigate]);
-
-    useEffect(() => {
-        /** */
-        window.addEventListener("resize", () => {
-            setIsMobile(window.innerWidth < 768);
-        });
+export default function Advice() {
+    const [form, setForm] = useState<{
+        picture: File | null;
+        breed: string;
+        foodtoy: string;
+		link: string;
+        advice: string;
+    }>({
+        picture: null, // Add state for the file
+        breed: "",
+        link: "",
+        foodtoy: "",
+        advice: ""
     });
 
+    // Handler for input changes
+    const changeHandler = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+        setForm({
+            ...form,
+            [e.target.name]: e.target.value
+        });
+    };
+
+    const fileChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files.length > 0) {
+            setForm((formData) => ({
+                ...formData,
+                picture: e.target.files![0] // Update state with the selected file
+            }));
+        }
+    };
+    
+    // Form submission handler
+    const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        
+        const formData = new FormData();
+        formData.append("breed", form.breed);
+        formData.append("foodtoy", form.foodtoy);
+		formData.append("link", form.link);
+        formData.append("advice", form.advice);
+        if (form.picture) {
+            formData.append("uploaded_file", form.picture);
+        }
+        
+        console.log("form", formData)
+        console.log("target",new FormData(e.target as any))
+        try {
+            const response = await fetch(import.meta.env.VITE_SERVER_URI + `upload-magic`, {
+                method: "POST",
+                body: formData
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const data = await response.json();
+            console.log(data);
+
+            setForm({
+                picture: null,
+                breed: "",
+                foodtoy: "",
+				link: "",
+                advice: ""
+            });
+        } catch (error) {
+            console.error('Error submitting form:', error);
+        }
+    };
+
     return (
-        <Box position="relative" minHeight="100vh" display="flex">
-            <Box
-                width={isMobile ? "100%" : "30%"} // Takes up half of the screen width
-                padding="20px"
-                display="flex"
-                flexDirection="column"
-                justifyContent="center" // Center content vertically if needed
-                alignItems="flex-start" // Align content to the left
-                bg="rgba(255, 255, 255, 0.8)" // Optional: Add background color to improve text readability
-                minHeight="60vh"
-                position="relative" // Ensure text container is positioned correctly
-                zIndex="1" // Ensure text is above the background image
+        <Box
+            backgroundImage={`url(${catBG})`}
+            backgroundSize="cover"
+            backgroundPosition="center"
+            backgroundRepeat="no-repeat"
+            padding={["20px 0px 0px 0px", "90px"]}
+            minHeight="90vh"
+        >
+            <Flex
+                direction={["column", "column", "row"]}
+                gap="30px"
+                padding="5px"
+                justify="flex-start"
+                align="center"
             >
-                <Heading color="black" mb={1} textAlign="right">
-                    WELCOME TO MEOWS WORLD !!!
-                </Heading>
+                <Box
+                    as="section"
+                    fontWeight={50}
+                    padding="30px"
+                    bg="rgba(0, 0, 0, 0.8)"
+                    borderRadius="md"
+                    maxWidth="450px"
+                    width="100%"
+                >
+                    <Heading textAlign="center" fontSize="30px" color="white" mb={2}>
+                        Submit Advice
+                    </Heading>
+                    <form onSubmit={submitHandler}>
+                        <FormControl id="picture" mb={1} isRequired>
+                            <FormLabel color="white">Upload Picture:</FormLabel>
+                            <Input
+                                type="file"
+                                name="uploaded_file"
+                                accept="image/*"
+                                onChange={fileChangeHandler}
+                                bg="white"
+                                color="black"
+                            />
+                        </FormControl>
 
-                <Text color="black" mb={80} textAlign="left">
-                    If you are a cat owner or considering becoming one, you will
-                    love cat research. Cat research is the place where you can
-                    get all kinds of information about cats. The latest cat
-                    news. Learn how to adopt a cat and explore the cat breeds
-                    page to find the cat that’s just right for you. Find out
-                    about the best brands of cat foods and toys that will work
-                    for your cat, and enjoy all the fun facts about cats. At cat
-                    research, you also gain valuable advice from other cat
-                    owners who have shared their experiences with their cats.
-                </Text>
-            </Box>
+                        <FormControl id="breed" mb={1} isRequired>
+                            <FormLabel color="white">Cat Breed:</FormLabel>
+                            <Input
+                                name="breed"
+                                type="text"
+                                value={form.breed}
+                                onChange={changeHandler}
+                                placeholder="Your cat breed"
+                                bg="white"
+                                color="black"
+                            />
+                        </FormControl>
 
-            <Box
-                position="absolute"
-                top="0"
-                left="0"
-                width="100%"
-                height="100%"
-                backgroundImage={`url(${catB})`}
-                backgroundSize="cover"
-                backgroundPosition="center"
-                backgroundRepeat="no-repeat"
-                zIndex="0" // Ensure background image is below the text container
-            />
+                        
 
-            <Box
-                as="footer"
-                className="content-wrapper text-content"
-                padding="20px"
-            >
-                <Box as="span" color="black">
-                    © Copyright, Made by: Hong Huynh
+                        <FormControl id="food" mb={1} isRequired>
+                            <FormLabel color="white">Food Brand & Toy Brand:</FormLabel>
+                            <Input
+                                name="foodtoy"
+                                type="text"
+                                value={form.foodtoy}
+                                onChange={changeHandler}
+                                placeholder="Food brand"
+                                bg="white"
+                                color="black"
+                            />
+                        </FormControl>
+
+
+						<FormControl id="link" mb={1} isRequired>
+                            <FormLabel color="white">Where to buy:</FormLabel>
+                            <Input
+                                name="link"
+                                type="text"
+                                value={form.link}
+                                onChange={changeHandler}
+                                placeholder="URL website link"
+                                bg="white"
+                                color="black"
+                            />
+                        </FormControl>
+
+                        <FormControl id="advice" mb={1} isRequired>
+                            <FormLabel color="white">Advice:</FormLabel>
+                            <Textarea
+                                name="advice"
+                                value={form.advice}
+                                onChange={changeHandler}
+                                placeholder="Advice about this item"
+                                resize="vertical"
+                                bg="white"
+                                color="black"
+                            />
+                        </FormControl>
+
+                        <Button
+                            type="submit"
+                            colorScheme="teal"
+                            width="full"
+                            mt={4}
+                        >
+                            Submit
+                        </Button>
+                    </form>
                 </Box>
-            </Box>
+            </Flex>
         </Box>
     );
 }
-
-export default App;
