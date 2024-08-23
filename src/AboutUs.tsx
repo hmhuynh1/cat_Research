@@ -2,6 +2,7 @@ import { Box, Heading, Img, Text } from "@chakra-ui/react";
 import catB from "./assets/aboutus.png"; 
 import H1 from "./assets/H1.jpeg";
 import H2 from "./assets/g1.jpg";
+import H3 from "./assets/cat-logo2.png";
 
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -41,35 +42,43 @@ function App() {
                 position="relative" // Ensure text container is positioned correctly
                 zIndex="1" // Ensure text is above the background image
             >
-                <Heading color="pick" mb={2} textAlign="left">
-                         WHAT IS OUR MISSION?
+
+                
+                <Box mt="6" display="flex" gap="20px">
+                    <Img src={H1} maxW="200px" borderRadius="30px" margin="80px 0" />
+                    <Img src={H2} maxW="200px" borderRadius="30px" margin="80px 0" />
+                </Box>
+                
+                
+                <Heading
+                    color="black"
+                    mb={1} // Updated margin-bottom
+                    textAlign="left"
+                    fontSize={{ base: "200%" }}
+                >
+                    WHAT IS OUR MISSION?
  
                 </Heading>
-                <Text color="black" mb={2} textAlign="left">
+
+                
+                <Text color="black"  mb={2} textAlign="left" fontSize={{ base: "100%" }}>
                         At Cat Research, we’re here to give you the knowledge you need to give your cat the best life possible.<br />
                         From in-depth cat product reviews. If you are a cat owner or considering becoming one,<br />
                         you will love Cat Research. Cat Research is the place where you can get all kinds of information about cats.<br />
                         Learn how to adopt a cat and explore the cat breeds page to find the cat that’s just right for you.<br />
                         You will also get to know all the fun facts about cats and valuable advice from other cat owners<br />
-                        who have shared their experiences with their cats.
-
+                        who have shared their experiences with their cats.               
                 
-                
-                </Text><br></br><br></br><br></br><br></br>
-
+                </Text>
                 <Box mt="6" display="flex" gap="20px">
-                    <Img src={H1} maxW="200px" borderRadius="30px" margin="10px 0" />
-                    <Img src={H2} maxW="200px" borderRadius="30px" margin="10px 0" />
+                    <Img src={H3} maxW="200px" borderRadius="30px" margin="60px 0" />
+                    <Img src={H3} maxW="200px" borderRadius="30px" margin="80px 0" />
+                    {/* <Img src={H3} maxW="200px" borderRadius="30px" margin="80px 0" />
+                    <Img src={H3} maxW="200px" borderRadius="30px" margin="80px 0" />
+                    <Img src={H3} maxW="200px" borderRadius="30px" margin="80px 0" />
+                 */}
                 </Box>
                
-            
-
-
-
-
-                {/* <Box as="footer" padding="20px" textAlign="center" bg="black" color="white" position="relative" zIndex="2">
-                <Box as="span">© copyright, Made by: Hong Huynh</Box>
-                </Box> */}
             </Box>
             
             

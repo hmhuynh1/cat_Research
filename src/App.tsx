@@ -40,7 +40,7 @@ function App() {
                 flexDirection="column"
                 justifyContent="center"
                 alignItems="flex-start"
-                bg="rgba(230, 240, 237, 10)"
+                bg="rgba(230, 240, 237, 20)"
                 minHeight="60vh"
                 position="relative"
                 zIndex="100"
