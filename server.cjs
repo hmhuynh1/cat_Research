@@ -1,4 +1,8 @@
 require('dotenv').config();
+
+/* eslint-disable no-undef */
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+require('dotenv').config();
 const express = require('express');
 const multer = require('multer');
 const path = require('path');
