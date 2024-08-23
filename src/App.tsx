@@ -23,7 +23,7 @@ function App() {
     return (
         <Box
             position="relative"
-            minHeight="100vh"
+            minHeight="90vh"
             display="flex"
         >
             <Box
@@ -38,9 +38,15 @@ function App() {
                 position="relative" // Ensure text container is positioned correctly
                 zIndex="1" // Ensure text is above the background image
             >
-                <Heading color="black" mb={4} textAlign="left">
-                    WELCOME TO CATS RESEARCH 
+                <Heading
+                    color="black"
+                    mb={1}
+                    textAlign="left"
+                    fontSize={{ base: "160%" }} // Responsive font sizes
+                >
+                    WELCOME TO CATS RESEARCH  
                 </Heading>
+
                 <Text color="black" mb={4} textAlign="left">
                     If you are a cat owner or considering becoming one, you will love cat research. Cat research is the place where you can get all kinds of information about cats. 
                     The latest cat news. Learn how to adopt a cat and explore the cat breeds page to find the cat that’s just right for you.
@@ -48,18 +54,16 @@ function App() {
                     At cat research, you also gain valuable advice from other cat owners who have shared their experiences with their cats.
         
                 
-                </Text><br></br><br></br><br></br><br></br>
+                </Text>
 
 
 
-                <Box as="footer" padding="20px" textAlign="center" bg="black" color="white" position="relative" zIndex="2">
-                <Box as="span">© copyright, Made by: Hong Huynh</Box>
-                </Box>
+                
             </Box>
             
             
             <Box
-                position="absolute"
+                position="absolute" //cat background side
                 top="0"
                 left="0"
                 width="100%"
