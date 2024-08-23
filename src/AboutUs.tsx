@@ -67,9 +67,9 @@ function App() {
 
 
 
-                <Box as="footer" padding="20px" textAlign="center" bg="black" color="white" position="relative" zIndex="2">
+                {/* <Box as="footer" padding="20px" textAlign="center" bg="black" color="white" position="relative" zIndex="2">
                 <Box as="span">© copyright, Made by: Hong Huynh</Box>
-                </Box>
+                </Box> */}
             </Box>
             
             
