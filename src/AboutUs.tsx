@@ -41,7 +41,7 @@ function App() {
                 position="relative" // Ensure text container is positioned correctly
                 zIndex="1" // Ensure text is above the background image
             >
-                <Heading color="black" mb={2} textAlign="left">
+                <Heading color="pick" mb={2} textAlign="left">
                          WHAT IS OUR MISSION?
  
                 </Heading>

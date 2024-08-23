@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useState, useEffect, FormEvent } from "react";
+import { useNavigate } from "react-router-dom";
 import {
     Box,
     Button,
@@ -30,11 +31,11 @@ const ResetPassword = () => {
                 duration: 5000,
                 isClosable: true
             });
-            history.push("/"); // Redirect if token is missing
+            navigate("/"); // Redirect if token is missing
         }
     }, [token, navigate, toast]);
 
-    const handleSubmit = async e => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         if (password !== confirmPassword) {
@@ -75,7 +76,7 @@ const ResetPassword = () => {
             });
 
             navigate("/login"); // Redirect to login page after success
-        } catch (error) {
+        } catch (error:any) {
             toast({
                 title: "Error",
                 description:

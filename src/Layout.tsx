@@ -1,124 +1,130 @@
 import { useEffect, useState } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
-import { Box, Button, Link } from "@chakra-ui/react";
-import BuildInfo from "./BuildInfo";
+import { Outlet, useNavigate, NavLink } from "react-router-dom";
+import { Box, Button, useBreakpointValue, Image } from "@chakra-ui/react";
+import logo from "./assets/cat-3d.png"; // Import the logo
+import Footer from "./Footer";
 
-const lsUserJson = localStorage.getItem("user") || "null";
-const parseUser = JSON.parse(lsUserJson);
+const getUserFromLocalStorage = () => {
+    const lsUserJson = localStorage.getItem("user") || "null";
+    return JSON.parse(lsUserJson);
+};
 
 export default function Layout() {
     const navigate = useNavigate();
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState(getUserFromLocalStorage);
     const [showMobileNav, setShowMobileNav] = useState(false);
-    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+    const isMobile = useBreakpointValue({ base: true, md: false });
 
     useEffect(() => {
-        console.log("parse user", parseUser);
-        if (parseUser != "") {
-            setUser(parseUser);
-        } else {
+        if (!user) {
             navigate("/login");
         }
+    }, [user, navigate]);
 
-        window.addEventListener("resize", () => {
-            setIsMobile(window.innerWidth < 768);
-        });
-    }, []);
-
-    const buttonStyle = {
-        backgroundColor: "",
-        border: "5px",
-        borderRadius: "20px",
-        padding: "20px",
-        fontWeight: 800,
-        fontSize: 20,
-        color: " #413d3c "
-    };
-
-    const mobileButtonStyle = {
-        //backgroundColor: "",
-        padding: "10px",
-        fontWeight: 600
+    const handleLogout = () => {
+        localStorage.removeItem("user");
+        setUser(null);
+        navigate("/login");
     };
 
     return (
-        <Box as={"main"} backgroundColor={"rgb(108, 117, 125)"}>
+        <Box as="main" backgroundColor="rgb(black)">
             <Box
-                as={"nav"}
-                display={"flex"}
-                justifyContent={"center"}
-                alignItems={"center"}
-                backgroundColor={"#5dbab1"}
-                padding={"12px 0px"}
-                boxShadow={"0 2px 2px rgb(52 172 145 / 80%)"}
-                gap={"20px"}
+                as="nav"
+                display="flex"
+                alignItems="center"
+                backgroundColor="#5dbab1"
+                padding="20px 0px"
+                boxShadow="0 2px 2px rgba(52, 172, 145, 0.8)"
+                gap="10px"
+                position="relative" // For positioning the logo
             >
-                {/* DESKTOP NAV BAR */}
-                {isMobile != true && (
-                    <Box display={"flex"} gap={"40px"}>
-                        <Link {...buttonStyle} href="/">
-                            Home
-                        </Link>
-                        <Link {...buttonStyle} href="/#/gallery">
-                            Cat Breeds
-                        </Link>
-                        <Link {...buttonStyle} href="/#/advice">
-                            Submit Advice
-                        </Link>
-                        <Link {...buttonStyle} href="/#/favorites">
-                            Helpful Advice
-                        </Link>
-                        <Link {...buttonStyle} href="/#/contacts">
-                            Contacts
-                        </Link>
-                        <Link {...buttonStyle} href="/#/about">
-                            About Us
-                        </Link>
-                        {user ? (
-                            <Button
-                                className="g-button"
-                                onClick={() => {
-                                    localStorage.removeItem("user");
-                                    navigate("/login");
-                                }}
-                            >
-                                Logout
-                            </Button>
-                        ) : (
-                            <></>
-                        )}
-                    </Box>
-                )}
+                {/* Logo */}
+                <Box position="absolute" left="20px" top="50%" transform="translateY(-50%)">
+                    <Image src={logo} alt="Logo" boxSize="110px" objectFit="contain" borderRadius="50px"/>
+                </Box>
 
-                {/* Mobile Nav Bar */}
+                {/* DESKTOP NAV BAR */}
+                <Box
+                    display="flex"
+                    flex="1"
+                    justifyContent="center"
+                    gap="40px"
+                    marginLeft="70px" // To avoid overlap with the logo
+                >
+                    {!isMobile && (
+                        <>
+                            <NavLink to="/" style={({ isActive }) => ({
+                                fontWeight: isActive ? 'bold' : 'normal',
+                                fontSize: "20px",
+                                color: "#413d3c"
+                            })}>
+                                Home
+                            </NavLink>
+                            <NavLink to="/gallery" style={({ isActive }) => ({
+                                fontWeight: isActive ? 'bold' : 'normal',
+                                fontSize: "20px",
+                                color: "#413d3c"
+                            })}>
+                                Cat Breeds
+                            </NavLink>
+                            <NavLink to="/advice" style={({ isActive }) => ({
+                                fontWeight: isActive ? 'bold' : 'normal',
+                                fontSize: "20px",
+                                color: "#413d3c"
+                            })}>
+                                Submit Advice
+                            </NavLink>
+                            <NavLink to="/favorites" style={({ isActive }) => ({
+                                fontWeight: isActive ? 'bold' : 'normal',
+                                fontSize: "20px",
+                                color: "#413d3c"
+                            })}>
+                                Helpful Advice
+                            </NavLink>
+                            <NavLink to="/contacts" style={({ isActive }) => ({
+                                fontWeight: isActive ? 'bold' : 'normal',
+                                fontSize: "20px",
+                                color: "#413d3c"
+                            })}>
+                                Contacts
+                            </NavLink>
+                            <NavLink to="/about" style={({ isActive }) => ({
+                                fontWeight: isActive ? 'bold' : 'normal',
+                                fontSize: "20px",
+                                color: "#413d3c"
+                            })}>
+                                About Us
+                            </NavLink>
+                            {user && (
+                                <Button onClick={handleLogout}>
+                                    Logout
+                                </Button>
+                            )}
+                        </>
+                    )}
+                </Box>
+
+                {/* MOBILE NAV BAR */}
                 {isMobile && (
-                    <Box
-                        width="95%"
-                        display={"flex"}
-                        justifyContent={"flex-end"}
-                    >
-                        <Button
-                            onClick={() => {
-                                if (showMobileNav) setShowMobileNav(false);
-                                else setShowMobileNav(true);
-                                console.log("showMobileNav", showMobileNav);
-                            }}
-                        >
+                    <Box width="95%" display="flex" justifyContent="flex-end">
+                        <Button onClick={() => setShowMobileNav(!showMobileNav)}>
                             Menu
                         </Button>
                     </Box>
                 )}
             </Box>
-            <Outlet context={[user, setUser]} />
 
-            <BuildInfo />
+            <Outlet context={[user, setUser]} />
+            <Footer />
 
             {/* DISPLAY MOBILE NAV */}
             {isMobile && showMobileNav && (
                 <Box
-                    position={"fixed"}
+                    position="fixed"
                     zIndex={10}
-                    display={"flex"}
+                    display="flex"
                     flexDirection="column"
                     gap="1rem"
                     right={0}
@@ -129,44 +135,30 @@ export default function Layout() {
                     boxShadow="2px 0 5px rgba(0,0,0,0.5)"
                     padding="1rem"
                 >
-                    <Button
-                        onClick={() => {
-                            setShowMobileNav(false);
-                            console.log("showMobileNav", showMobileNav);
-                        }}
-                    >
-                        Close
-                    </Button>
-
-                    <Link {...mobileButtonStyle} href="/">
+                    <Button onClick={() => setShowMobileNav(false)}>Close</Button>
+                    <NavLink to="/" style={{ fontWeight: 600, fontSize: "16px", color: "#413d3c" }}>
                         Home
-                    </Link>
-                    <Link {...mobileButtonStyle} href="/#/gallery">
+                    </NavLink>
+                    <NavLink to="/gallery" style={{ fontWeight: 600, fontSize: "16px", color: "#413d3c" }}>
                         Cat Breeds
-                    </Link>
-                    <Link {...mobileButtonStyle} href="/#/advice">
-                        Submit Advices
-                    </Link>
-                    <Link {...mobileButtonStyle} href="/#/favorites">
-                        Helpful Advices
-                    </Link>
-                    <Link {...mobileButtonStyle} href="/#/contacts">
+                    </NavLink>
+                    <NavLink to="/advice" style={{ fontWeight: 600, fontSize: "16px", color: "#413d3c" }}>
+                        Submit Advice
+                    </NavLink>
+                    <NavLink to="/favorites" style={{ fontWeight: 600, fontSize: "16px", color: "#413d3c" }}>
+                        Helpful Advice
+                    </NavLink>
+                    <NavLink to="/contacts" style={{ fontWeight: 600, fontSize: "16px", color: "#413d3c" }}>
                         Contacts
-                    </Link>
-                    <Link {...mobileButtonStyle} href="/#/about">
+                    </NavLink>
+                    <NavLink to="/about" style={{ fontWeight: 600, fontSize: "16px", color: "#413d3c" }}>
                         About Us
-                    </Link>
-                    <Button
-                        className="g-button"
-                        width={"24"}
-                        margin={0}
-                        onClick={() => {
-                            localStorage.removeItem("user");
-                            navigate("/login");
-                        }}
-                    >
-                        Log Out
-                    </Button>
+                    </NavLink>
+                    {user && (
+                        <Button width="100%" onClick={handleLogout}>
+                            Log Out
+                        </Button>
+                    )}
                 </Box>
             )}
         </Box>

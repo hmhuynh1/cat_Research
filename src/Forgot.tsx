@@ -1,17 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Box, FormControl, FormLabel, Heading, Input } from "@chakra-ui/react";
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
 import catBG from "./assets/grassCat.png";
 import ResetPassword from "./ResetPassword";
 
 export default function Forgot() {
-    const navigate = useNavigate();
   const params = new URLSearchParams(window.location.href.split('?').at(-1));
 
   const token = params.get("token");
 
     const [result, setResult] = useState("");
-    const [error, setError] = useState(null);
 
 console.log({token})
     const submitHandler = async (e: any) => {
@@ -37,9 +35,7 @@ console.log({token})
 
     };
 
-    if (error) {
-        return <div>{error}</div>;
-    }
+   
 
     const bgStyle = {
         backgroundSize: "cover"

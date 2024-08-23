@@ -1,17 +1,18 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Box, Button, Divider, FormControl, FormLabel, Heading, Input } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import catBG from "./assets/grassCat.png"
 import { useState } from "react";
-import BuildInfo from "./BuildInfo";
+import Footer from "./Footer";
 
 export default function SignUp() {
     const [error, setError] = useState("");
 
     const navigate = useNavigate();
-    const submitHandler = async (e: any) => {
+    const submitHandler = async (e:any) => {
         e.preventDefault();
 
-        console.log(e.target.email.value, e.target.password.value)
+        console.log(e.target.email.value, e.target?.password.value)
 
         console.log(import.meta.env)
         const response = await fetch(import.meta.env.VITE_SERVER_URI + "login", {
@@ -20,8 +21,8 @@ export default function SignUp() {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                email: e.target.email.value,
-                password: e.target.password.value
+                email: e.target?.email.value,
+                password: e.target?.password.value
             }),
 
         });
@@ -68,7 +69,7 @@ export default function SignUp() {
                     <Button className="glow" onClick={() => navigate('/forgot')}>Forgot Password</Button>
                 </form>
                 <Divider />
-                <BuildInfo />
+                <Footer />
             </Box>
         </Box>
     </Box>
