@@ -71,9 +71,9 @@ ENV NODE_ENV production
 COPY init.sh ./
 
 # Start and enable SSH
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends dialog \
-    && apt-get install -y --no-install-recommends openssh-server \
+RUN apk update \
+    && apk add -f -l dialog \
+    && apk add -f -l openssh-server \
     && echo "root:Docker!" | chpasswd \
     && chmod u+x ./init.sh
 COPY sshd_config /etc/ssh/
