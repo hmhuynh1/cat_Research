@@ -43,7 +43,7 @@ function App() {
                 bg="rgba(230, 240, 237, 0.50)"
                 minHeight="60vh"
                 position="relative"
-                zIndex="100"
+                zIndex="1"
                 
             >
                 <Heading
